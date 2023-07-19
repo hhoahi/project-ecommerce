@@ -56,7 +56,7 @@ const Footer = () => {
             <div className="text">
                 JS DEV
             </div>
-            <img src = {Payment} />
+            {/* <img src = {Payment} /> */}
             </div>
         </div>
     </footer>
