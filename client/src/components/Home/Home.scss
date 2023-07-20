@@ -3,3 +3,17 @@
 .home {
   height: 2000px;
 }
+
+.layout-category {
+  margin-left: 5%;
+  display: flex;
+  align-items: center;
+  width: 90%;
+  padding: auto;
+  justify-content: center;
+}
+
+.layout-product {
+  margin-left: 5%;
+  width: 90%;
+}
