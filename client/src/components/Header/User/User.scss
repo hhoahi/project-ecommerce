@@ -1,0 +1,53 @@
+.user-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .user-content {
+    width: 450px;
+    height: 300px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    position: relative;
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    button {
+      outline: 0;
+      border: 0;
+      height: 50px;
+      width: 45%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      color: white;
+      border-radius: 8px;
+      background-color: #8e2de2;
+      border-bottom: 3px solid #6516aa;
+
+      &:hover {
+        background-color: #555;
+      }
+    }
+  }
+}
