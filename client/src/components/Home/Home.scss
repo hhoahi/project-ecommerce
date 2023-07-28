@@ -1,19 +1,14 @@
 @import "../../css-config/mixins.scss";
 
-.home {
-  height: 2000px;
-}
-
 .layout-category {
-  margin-left: 5%;
+  margin-left: 10%;
   display: flex;
-  align-items: center;
-  width: 90%;
-  padding: auto;
   justify-content: center;
+  align-items: center;
+  width: 80%;
 }
 
 .layout-product {
-  margin-left: 5%;
-  width: 90%;
+  margin-left: 10%;
+  width: 80%;
 }

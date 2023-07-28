@@ -28,7 +28,8 @@
         display: flex;
       }
       li {
-        font-size: 14px;
+        margin-top: 15px;
+        font-size: 17px;
         font-weight: 600;
         text-transform: uppercase;
         cursor: pointer;
@@ -42,7 +43,7 @@
         font-size: 34px;
         position: absolute;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-20%);
       }
     }
     .right {
@@ -77,18 +78,10 @@
     }
   }
   &.sticky-header {
-    position: sticky;
+    position: fixed;
     top: 0;
-    transform: translateY(-60px);
-    animation: stickyHeader 0.3s ease forwards;
-  }
-}
-
-@keyframes stickyHeader {
-  0% {
-    transform: translateY(-60px);
-  }
-  100% {
-    transform: translateY(0);
+    left: 0;
+    right: 0;
+    z-index: 999;
   }
 }

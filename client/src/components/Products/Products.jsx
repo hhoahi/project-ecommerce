@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./Products.scss";
 import Product from "./Product/Product";
 

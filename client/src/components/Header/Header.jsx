@@ -9,6 +9,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import Search from "./Search/Search";
 import Cart from "../Cart/Cart";
 import User from "./User/User";
+import { debounce } from "lodash";
 import { Context } from "../../utils/context";
 
 import "./Header.scss";
@@ -31,7 +32,12 @@ const Header = () => {
   };
 
   useEffect(() => {
+    const debouncedHandleScroll = debounce(handleScroll, 10);
     window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", debouncedHandleScroll);
+    };
   }, []);
 
   return (
@@ -40,11 +46,11 @@ const Header = () => {
         <div className="header-content">
           <ul className="left">
             <li onClick={() => navigate("/")}>Home</li>
-            <li>About</li>
+            <li onClick={() => navigate("/about")}>About</li>
             <li>Categories</li>
           </ul>
           <div className="center" onClick={() => navigate("/")}>
-            STORE
+            ADAMSTORE
           </div>
           <div className="right">
             <TbSearch onClick={() => setShowSearch(true)} />
