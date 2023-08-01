@@ -1,5 +1,5 @@
 import React from "react";
-import "./FindStoreForm.scss";
+import "../../styles/FindStoreForm.scss";
 import { Form, FormGroup } from "reactstrap";
 
 function FindStoreForm() {
@@ -23,7 +23,7 @@ function FindStoreForm() {
             required
           />
         </FormGroup>
-        
+
         <FormGroup className="select__group">
           <select>
             <option value="ac">Get Advice</option>

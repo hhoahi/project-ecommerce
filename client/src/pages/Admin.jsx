@@ -1,5 +1,5 @@
 import React from "react";
-import "./Admin.scss";
+import "../styles/Admin.scss";
 
 function Admin() {
   return <div>Admin</div>;

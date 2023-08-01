@@ -1,8 +1,8 @@
 import React from "react";
 import { Col } from "reactstrap";
-import "./BlogList.scss";
+import "../../styles/BlogList.scss";
 import { Link } from "react-router-dom";
-import blogData from "../../../assets/data/blogData";
+import blogData from "../../assets/data/blogData";
 
 function BlogList() {
   const BlogItem = ({ item }) => {

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { storeUser } from "../../utils/helpers";
+import { storeUser } from "../utils/helpers";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/store/blog_banner_1_grande.webp";
+import logo from "../assets/store/blog_banner_1_grande.webp";
 
-import "./Login.scss";
+import "../styles/Login.scss";
 
 const initialUser = { password: "", identifier: "" };
 
@@ -46,10 +46,7 @@ export const Login = () => {
     <div className="app">
       <div className="auth-form-container">
         <div className="logo-container">
-          <img
-            src={logo}
-            alt="Logo"
-          />
+          <img src={logo} alt="Logo" />
         </div>
         <h2>Login</h2>
         <form className="login-form">
@@ -80,3 +77,4 @@ export const Login = () => {
     </div>
   );
 };
+export default Login;

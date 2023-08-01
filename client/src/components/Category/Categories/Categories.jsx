@@ -1,4 +1,4 @@
-import "./Category.scss";
+import "./Categories.scss";
 import { useNavigate } from "react-router-dom";
 
 const stripeAppDevUrl = process.env.REACT_APP_STRIPE_APP_DEV_URL;

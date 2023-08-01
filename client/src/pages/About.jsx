@@ -1,12 +1,12 @@
 import React from "react";
-import AboutUs from "./AboutUs/AboutUs";
-import ServicesList from "./Services/ServicesList";
-import Testimonial from "./Testimonial/Testimonial";
-import BlogList from "./Blog/BlogList";
+import AboutUs from "../components/UI/AboutUs";
+import ServicesList from "../components/UI/ServicesList";
+import Testimonial from "../components/UI/Testimonial";
+import BlogList from "../components/UI/BlogList";
 
 import { Container, Row, Col } from "reactstrap";
 import ReactPlayer from "react-player";
-import "./About.scss";
+import "../styles/About.scss";
 
 function About() {
   return (

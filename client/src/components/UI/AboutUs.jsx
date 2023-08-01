@@ -1,7 +1,7 @@
 import React from "react";
-import "./AboutUs.scss";
+import "../../styles/AboutUs.scss";
 import { Container, Row, Col } from "reactstrap";
-import aboutImg from "../../../assets/store/blog_banner_1_grande.webp";
+import aboutImg from "../../assets/store/blog_banner_1_grande.webp";
 import CountUp from "react-countup";
 
 function AboutUs() {

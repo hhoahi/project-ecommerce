@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import logo from "../../assets/store/blog_banner_2_grande.webp";
-import "./Register.scss";
+import logo from "../assets/store/blog_banner_2_grande.webp";
+import "../styles/Register.scss";
 
 const initialUser = { email: "", password: "", username: "" };
 export const Register = () => {
@@ -82,3 +82,4 @@ export const Register = () => {
     </div>
   );
 };
+export default Register;

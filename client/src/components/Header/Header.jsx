@@ -7,7 +7,7 @@ import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineUser } from "react-icons/ai";
 
 import Search from "./Search/Search";
-import Cart from "../Cart/Cart";
+import Cart from "../../pages/Cart";
 import logo from "../../assets/logo.jpg";
 import { debounce } from "lodash";
 import { Context } from "../../utils/context";
@@ -86,8 +86,8 @@ const Header = () => {
               <AiOutlineUser className="icon-profile" onClick={handleClick} />
               {isOpen && (
                 <div className="dropdown-content">
-                  <a href="/Admin">Admin</a>
                   <a href="/login">Sign In</a>
+                  <a href="/admin">Admin</a>
                 </div>
               )}
             </li>

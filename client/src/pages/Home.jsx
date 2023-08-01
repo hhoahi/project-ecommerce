@@ -1,14 +1,14 @@
 import { useEffect, useContext, useCallback } from "react";
-import "./Home.scss";
+import "../styles/Home.scss";
 
-import HeroSlider from "./Slider/HeroSlider";
-import FindStoreForm from "./FindStore/FindStoreForm";
-import Category from "./Category/Category";
-import Products from "../Products/Products";
+import HeroSlider from "../components/UI/HeroSlider";
+import FindStoreForm from "../components/UI/FindStoreForm";
+import Category from "../components/Category/Categories/Categories";
+import Products from "../components/Products/Products";
 
 import { Container, Row, Col } from "reactstrap";
-import { fetchDataFromApi } from "../../utils/api";
-import { Context } from "../../utils/context";
+import { fetchDataFromApi } from "../utils/api";
+import { Context } from "../utils/context";
 
 const Home = () => {
   const { categories, setCategories, products, setProducts } =

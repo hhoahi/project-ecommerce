@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { MdClose } from "react-icons/md";
-import "./CartItem.scss";
-import { Context } from "../../../utils/context";
+import "../styles/CartItem.scss";
+import { Context } from "../utils/context";
 
 const stripeAppDevUrl = process.env.REACT_APP_STRIPE_APP_DEV_URL;
 

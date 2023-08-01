@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import RelatedProducts from "./RelatedProducts/RelatedProducts";
+import RelatedProducts from "./RelatedProducts";
 import {
   FaFacebookF,
   FaTwitter,
@@ -8,11 +8,11 @@ import {
   FaPinterest,
   FaCartPlus,
 } from "react-icons/fa";
-import "./SingleProduct.scss";
+import "../styles/SingleProduct.scss";
 
-import useFetch from "../../hooks/useFetch";
+import useFetch from "../hooks/useFetch";
 import { useParams } from "react-router-dom";
-import { Context } from "../../utils/context";
+import { Context } from "../utils/context";
 
 const stripeAppDevUrl = process.env.REACT_APP_STRIPE_APP_DEV_URL;
 

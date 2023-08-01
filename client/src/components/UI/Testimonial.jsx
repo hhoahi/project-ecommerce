@@ -1,11 +1,11 @@
 import React from "react";
-import "./Testimonial.scss";
+import "../../styles/Testimonial.scss";
 import Slider from "react-slick";
 
-import ava01 from "../../../assets/client/client-1.png";
-import ava02 from "../../../assets/client/client-2.png";
-import ava03 from "../../../assets/client/client-3.png";
-import ava04 from "../../../assets/client/client-4.png";
+import ava01 from "../../assets/client/client-1.png";
+import ava02 from "../../assets/client/client-2.png";
+import ava03 from "../../assets/client/client-3.png";
+import ava04 from "../../assets/client/client-4.png";
 
 function Testimonial() {
   const settings = {

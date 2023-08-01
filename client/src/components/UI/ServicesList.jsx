@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col } from "reactstrap";
-import "./ServicesList.scss";
-import servicesData from "../../../assets/data/serviceData";
+import "../../styles/ServicesList.scss";
+import servicesData from "../../assets/data/serviceData";
 
 const ServiceItem = ({ item }) => (
   <Col lg="4" md="4" sm="12" className="mb-3">
