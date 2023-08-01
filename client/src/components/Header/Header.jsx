@@ -29,10 +29,6 @@ const Header = () => {
     { label: "SHIRT", value: "/category/3" },
     { label: "TROUSERS", value: "/category/4" },
   ];
-  const users = [
-    { label: "Login", value: "/" },
-    { label: "Register", value: "/" },
-  ];
 
   const handleOptionChange = (option) => {
     navigate(option.value);
@@ -46,6 +42,10 @@ const Header = () => {
       setScrolled(false);
     }
   };
+  const [isOpen, setIsOpen] = useState(false);
+  function handleClick() {
+    setIsOpen(!isOpen);
+  }
 
   useEffect(() => {
     const debouncedHandleScroll = debounce(handleScroll, 10);
@@ -82,17 +82,19 @@ const Header = () => {
               <TbSearch onClick={() => setShowSearch(true)} />
             </li>
 
+            <li className="nav-right-btn">
+              <AiOutlineUser className="icon-profile" onClick={handleClick} />
+              {isOpen && (
+                <div className="dropdown-content">
+                  <a href="/Admin">Admin</a>
+                  <a href="/login">Sign In</a>
+                </div>
+              )}
+            </li>
+
             <li className="cart-icon" onClick={() => setShowCart(true)}>
               <CgShoppingCart />
               {!!cartCount && <span>{cartCount}</span>}
-            </li>
-
-            <li>
-              <Dropdown
-                options={users}
-                onChange={(option) => handleOptionChange(option)}
-                placeholder={<AiOutlineUser />}
-              />
             </li>
 
             <li className="toggle-menu" onClick={() => setShowMenu(!showMenu)}>

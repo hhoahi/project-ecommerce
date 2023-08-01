@@ -27,7 +27,7 @@ const HeroSlider = () => {
             </h4>
 
             <button className="btn reserve__btn mt-4">
-              <Link to="/home">Reserve Now</Link>
+              <Link to="/category/1">Reserve Now</Link>
             </button>
           </div>
         </Container>
