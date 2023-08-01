@@ -1,6 +1,6 @@
 @import "../../css-config/mixins.scss";
 .products-container {
-  margin: 50px 0;
+  margin: 25px 0;
   justify-content: center;
   @include md {
   }
@@ -19,7 +19,7 @@
       margin-top: 5px;
       width: 50px;
       height: 3px;
-      background-color: #8e2de2;
+      background-color: #8b0000;
       @include md {
         margin-top: 10px;
       }
@@ -32,6 +32,31 @@
     gap: 10px;
     @include md {
       // gap: 20px;
+    }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    button {
+      display: inline-block;
+      padding: 8px 12px;
+      margin: 0 5px;
+      background-color: #eaeaea;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ccc;
+      }
+
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
     }
   }
 }

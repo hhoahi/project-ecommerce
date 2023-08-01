@@ -42,7 +42,6 @@ const CartItem = () => {
             </div>
 
             <div className="text">
-              <span>{item.attributes.quantity}:</span>
               <span className="highlight">
                 &#x24;{item.attributes.price * item.attributes.quantity}
               </span>

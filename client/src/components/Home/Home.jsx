@@ -9,7 +9,6 @@ import Products from "../Products/Products";
 import { Container, Row, Col } from "reactstrap";
 import { fetchDataFromApi } from "../../utils/api";
 import { Context } from "../../utils/context";
-import {} from "../../assets/store/slideshow_1_master.webp";
 
 const Home = () => {
   const { categories, setCategories, products, setProducts } =

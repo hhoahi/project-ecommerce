@@ -30,13 +30,15 @@ function About() {
           </div>
         </div>
 
-        <div className="Layout-choose-us">
+        <div className="layout-choose-us">
           <div className="video-container">
             <ReactPlayer
               url="https://www.youtube.com/watch?v=Szgcckuib7I"
               controls
-              width="60%"
-              height="520px"
+              playing
+              loop
+              width="80%"
+              height="80%"
             />
           </div>
         </div>

@@ -2,30 +2,29 @@
 
 .main-header {
   width: 100%;
-  padding: 0 20px;
-  background-color: #212121;
-  color: aliceblue;
+  background-color: #ffffff;
+  color: rgb(42, 42, 42);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   z-index: 99;
-  @include md {
-    padding: 0 40px;
-  }
   .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
-    max-width: 1200px;
+    height: 60px;
     margin: 0 auto;
     @include md {
-      height: 80px;
+      height: 60px;
     }
     .left {
       list-style-type: none;
       display: none;
       gap: 25px;
-      @include md {
+      align-items: center;
+      @include lg {
         display: flex;
+      }
+      .Dropdown-control {
+        border: none;
       }
       li {
         margin-top: 15px;
@@ -39,19 +38,30 @@
       font-size: 22px;
       font-weight: 700;
       cursor: pointer;
-      @include md {
+      @include lg {
         font-size: 34px;
         position: absolute;
-        left: 50%;
+        left: 45%;
         transform: translateX(-20%);
       }
     }
     .right {
+      list-style-type: none;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 5px;
       @include md {
         gap: 25px;
+      }
+      .Dropdown-control {
+        border: none;
+      }
+
+      li {
+        margin-top: 15px;
+        font-size: 17px;
+        font-weight: 400;
+        cursor: pointer;
       }
       svg {
         font-size: 20px;
@@ -65,7 +75,8 @@
         span {
           min-width: 20px;
           text-align: center;
-          background-color: #8e2de2;
+          background-color: #8b0000;
+          color: #ffffff;
           padding: 2.5px;
           position: absolute;
           top: -5px;
@@ -73,6 +84,21 @@
           font-size: 12px;
           line-height: 1;
           border-radius: 10px;
+        }
+      }
+      @include mt {
+        .toggle-menu {
+          display: block;
+          cursor: pointer;
+          margin-top: 25px;
+          span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            margin-bottom: 4px;
+            background-color: #333;
+            border-radius: 1px;
+          }
         }
       }
     }
@@ -83,5 +109,34 @@
     left: 0;
     right: 0;
     z-index: 999;
+  }
+}
+.menu {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  z-index: 98;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    li {
+      font-size: 17px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      cursor: pointer;
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+  .Dropdown-control {
+    border: none;
   }
 }

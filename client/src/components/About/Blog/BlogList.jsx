@@ -14,11 +14,11 @@ function BlogList() {
           <img src={imgUrl} alt="" className="w-100" />
           <div className="blog__info p-3">
             <Link to={`/blogs/${title}`} className="blog__title">
-              {title.length > 50 ? title.substr(0, 50) : title}
+              {title.length > 45 ? title.substr(0, 45) : title}
             </Link>
             <p className="section__description mt-3">
-              {description.length > 120
-                ? description.substr(0, 120)
+              {description.length > 130
+                ? description.substr(0, 100)
                 : description}
             </p>
 
