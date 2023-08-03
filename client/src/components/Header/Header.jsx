@@ -7,7 +7,8 @@ import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineUser } from "react-icons/ai";
 
 import Search from "./Search/Search";
-import Cart from "../../pages/Cart";
+import Cart from "./Cart/Cart";
+import Profile from "./Profile/Profile";
 import logo from "../../assets/logo.jpg";
 import { debounce } from "lodash";
 import { Context } from "../../utils/context";
@@ -18,12 +19,16 @@ import "./Header.scss";
 const Header = () => {
   const [showCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const { cartCount } = useContext(Context);
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+
   const navigate = useNavigate();
   const options = [
+    { label: "CATEGORIES", value: "/categories" },
     { label: "T-SHIRT", value: "/category/1" },
     { label: "SUIT", value: "/category/2" },
     { label: "SHIRT", value: "/category/3" },
@@ -42,7 +47,7 @@ const Header = () => {
       setScrolled(false);
     }
   };
-  const [isOpen, setIsOpen] = useState(false);
+
   function handleClick() {
     setIsOpen(!isOpen);
   }
@@ -55,6 +60,26 @@ const Header = () => {
       window.removeEventListener("scroll", debouncedHandleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const userInfo = localStorage.getItem("userInfo");
+    console.log(userInfo);
+    if (userInfo) {
+      setIsLogin(true);
+    }
+  }, []);
+
+  function handleLogin() {
+    localStorage.setItem("userInfo", "true");
+    setIsLogin(true);
+    setIsOpen(false);
+  }
+
+  function handleLogout() {
+    localStorage.clear();
+    // localStorage.removeItem('userInfo');
+    setIsLogin(false);
+  }
 
   return (
     <div>
@@ -81,16 +106,31 @@ const Header = () => {
             <li>
               <TbSearch onClick={() => setShowSearch(true)} />
             </li>
-
-            <li className="nav-right-btn">
-              <AiOutlineUser className="icon-profile" onClick={handleClick} />
-              {isOpen && (
-                <div className="dropdown-content">
-                  <a href="/login">Sign In</a>
-                  <a href="/admin">Admin</a>
-                </div>
-              )}
-            </li>
+            {isLogin ? (
+              // if user is logged in, show profile button and dropdown menu
+              <li className="nav-right-btn">
+                <AiOutlineUser className="icon-profile" onClick={handleClick} />
+                {isOpen && (
+                  <div className="dropdown-content">
+                    <Profile />
+                    <button onClick={handleLogout}>Logout</button>
+                  </div>
+                )}
+              </li>
+            ) : (
+              // if user is not logged in, show login and register buttons
+              <li className="nav-right-btn">
+                <AiOutlineUser className="icon-profile" onClick={handleClick} />
+                {isOpen && (
+                  <div className="dropdown-content">
+                    <a href="/login" onClick={handleLogin}>
+                      Sign In
+                    </a>
+                    <a href="/admin">Admin</a>
+                  </div>
+                )}
+              </li>
+            )}
 
             <li className="cart-icon" onClick={() => setShowCart(true)}>
               <CgShoppingCart />
@@ -107,7 +147,7 @@ const Header = () => {
       </header>
       {showCart && <Cart setShowCart={setShowCart} />}
       {showSearch && <Search setShowSearch={setShowSearch} />}
-      {showMenu && ( // Hiển thị menu dọc nếu trạng thái của toggle là true
+      {showMenu && (
         <div className="menu">
           <ul>
             <li

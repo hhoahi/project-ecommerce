@@ -41,6 +41,7 @@
           font-size: 20px;
           line-height: 28px;
           margin-bottom: 20px;
+          font-weight: 500;
           @include md {
             font-size: 24px;
             line-height: 32px;
@@ -48,11 +49,13 @@
         }
         .price {
           font-size: 24px;
+          text-align: left;
           line-height: 32px;
           margin-bottom: 20px;
         }
         .desc {
           font-size: 14px;
+          text-align: left;
           line-height: 20px;
           margin-bottom: 20px;
           color: #6b6b6b;
@@ -102,7 +105,7 @@
             cursor: pointer;
             font-size: 16px;
             color: white;
-            background-color: #8B0000;
+            background-color: #8b0000;
             border-bottom: 3px solid #3c0505;
             flex-grow: 1;
             @include md {
@@ -122,6 +125,7 @@
           .text-bold {
             font-size: 18px;
             font-weight: 500;
+            text-align: left;
             display: block;
             &:nth-child(1) {
               margin-bottom: 20px;

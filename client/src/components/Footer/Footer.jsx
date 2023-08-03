@@ -1,55 +1,99 @@
 import React from "react";
 import "./Footer.scss";
-import { FaLocationArrow, FaMobileAlt, FaEnvelope } from "react-icons/fa";
 import Payment from "../../assets/payments.png";
-
+import { Link } from "react-router-dom";
+import { CgPhone } from "react-icons/cg";
+import { MdEmail } from "react-icons/md";
+import logo from "../../assets/logo.jpg";
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
         <div className="col">
-          <div className="title">About</div>
-          <div className="text">abc</div>
-        </div>
-        <div className="col">
-          <div className="title">Contact</div>
-          <div className="c-item">
-            <FaLocationArrow />
-            <div className="text">abc</div>
+          <div className="title">
+            <img src={logo} alt=""></img>
           </div>
-          <div className="c-item">
-            <FaMobileAlt />
-            <div className="text">Phone: 0123456789</div>
+          <div className="text">
+            <CgPhone />
+            0388590810
           </div>
-          <div className="c-item">
-            <FaEnvelope />
-            <div className="text">Email: abc@gmail.com</div>
+          <div className="text">
+            <MdEmail /> Adamstorevn@gmail.com
+          </div>
+          <div className="text">Số 243 Nguyễn Thị Thập, Tân Phú, Q7</div>
+        </div>
+
+        <div className="col">
+          <h3 className="title">Pages</h3>
+          <div className="text">
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              Home
+            </Link>
+          </div>
+          <div className="text">
+            <Link
+              to="/about"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              About
+            </Link>
+          </div>
+          <div className="text">
+            <Link
+              to="/lookbook"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              LookBook
+            </Link>
           </div>
         </div>
+
         <div className="col">
-          <div className="title">Categories</div>
-          <div className="text">Headphones</div>
-          <div className="text">Smart Watches</div>
-          <div className="text">Bluetooth Speakers</div>
-          <div className="text">Wireless Earbuds</div>
-          <div className="text">Home Theatre</div>
-          <div className="text">Projectors</div>
+          <h3 className="title">Categories</h3>
+          <div className="text">
+            <Link
+              to="/category/1"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              T-Shirt
+            </Link>
+          </div>
+          <div className="text">
+            <Link
+              to="/category/2"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              Suit
+            </Link>
+          </div>
+          <div className="text">
+            <Link
+              to="/category/3"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              Shirt
+            </Link>
+          </div>
+          <div className="text">
+            <Link
+              to="/category/4"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              Trousers
+            </Link>
+          </div>
         </div>
-        <div className="col">
-          <div className="title">Pages</div>
-          <div className="text">Home</div>
-          <div className="text">About</div>
-          <div className="text">Privacy Policy</div>
-          <div className="text">Returns</div>
-          <div className="text">Terms & Conditions</div>
-          <div className="text">Contact Us</div>
-        </div>
-      </div>
-      <div className="bottom-bar">
+
         <div className="bottom-bar-content">
-          <div className="text">JS DEV</div>
+          <h3 className="text">ADAMSTORE</h3>
           <img src={Payment} alt="" />
         </div>
+      </div>
+      <div class="footer-copyright text-center">
+        Copyrights © 2018 by {""}
+        <a target="_blank" href="http://adamstorevn.com">
+          Adamstore
+        </a>
       </div>
     </footer>
   );

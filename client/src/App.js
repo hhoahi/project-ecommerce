@@ -7,9 +7,11 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import About from "./pages/About";
 import Categogy from "./components/Category/Category";
+import Categories from "./pages/Categories";
 import SingleProduct from "./pages/SingleProduct";
 import Newsletter from "./components/Footer/Newsletter/Newsletter";
 import AppContext from "./utils/context";
+import Button from "./components/UI/Button";
 
 function App() {
   return (
@@ -22,11 +24,13 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/about/" element={<About />} />
+          <Route path="/categories/" element={<Categories />} />
           <Route path="/category/:id" element={<Categogy />} />
           <Route path="/product/:id" element={<SingleProduct />} />
         </Routes>
         <Newsletter />
         <Footer />
+        <Button />
       </AppContext>
     </BrowserRouter>
   );

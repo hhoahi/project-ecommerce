@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { MdClose } from "react-icons/md";
 import { BsCartX } from "react-icons/bs";
 
-import CartItem from "./CartItem";
-import { Context } from "../utils/context";
+import CartItem from "./CartItem/CartItem";
+import { Context } from "../../../utils/context";
 import { useNavigate } from "react-router-dom";
-import "../styles/Cart.scss";
-import { makePaymentRequest } from "../utils/api";
+import "./Cart.scss";
+import { makePaymentRequest } from "../../../utils/api";
 
 import { loadStripe } from "@stripe/stripe-js";
 

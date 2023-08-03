@@ -12,11 +12,13 @@ import "../styles/SingleProduct.scss";
 
 import useFetch from "../hooks/useFetch";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../utils/context";
 
 const stripeAppDevUrl = process.env.REACT_APP_STRIPE_APP_DEV_URL;
 
 const SingleProduct = () => {
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
@@ -34,6 +36,10 @@ const SingleProduct = () => {
 
   if (!data) return;
   const product = data?.data?.[0]?.attributes;
+
+  const handleCategoryClick = (categoryId) => {
+    navigate(`/category/${categoryId}`);
+  };
 
   return (
     <div className="single-product-main-content">
@@ -73,7 +79,12 @@ const SingleProduct = () => {
             <span className="divider" />
 
             <div className="info-item">
-              <span className="text-bold">
+              <span
+                className="text-bold"
+                onClick={() =>
+                  handleCategoryClick(product.categories.data[0].id)
+                }
+              >
                 Category:
                 <span> {product.categories.data[0].attributes.title}</span>
               </span>

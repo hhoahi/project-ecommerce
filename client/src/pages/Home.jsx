@@ -33,6 +33,8 @@ const Home = () => {
     getCategories();
   }, [getProducts, getCategories]);
 
+
+
   return (
     <div>
       <div className="p-0 hero__slider-section">
@@ -61,6 +63,7 @@ const Home = () => {
           <div className="layout-product">
             <Products products={products} headingText="Popular Products" />
           </div>
+
         </div>
       </div>
     </div>

@@ -24,4 +24,4 @@ export const makePaymentRequest = axios.create({
   headers: {
     Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
   },
-})
+});
