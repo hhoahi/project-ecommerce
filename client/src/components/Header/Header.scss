@@ -1,5 +1,33 @@
 @import "../../css-config/mixins.scss";
-
+.header-top {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #8b0000;
+  height: 45px;
+  button {
+    background-color: #8b0000;
+    display: block;
+    position: relative;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  button:hover {
+    background-color: #8b0000;
+    color: #eee;
+  }
+  span {
+    color: #fff;
+    background: #000;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 0 5px;
+    border-radius: 2px;
+  }
+}
 .main-header {
   width: 100%;
   background-color: #ffffff;

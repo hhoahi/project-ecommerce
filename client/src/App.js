@@ -6,6 +6,7 @@ import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import About from "./pages/About";
+import Location from "./pages/Location";
 import Categogy from "./components/Category/Category";
 import Categories from "./pages/Categories";
 import SingleProduct from "./pages/SingleProduct";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/about/" element={<About />} />
+          <Route path="/location" element={<Location />} />
           <Route path="/categories/" element={<Categories />} />
           <Route path="/category/:id" element={<Categogy />} />
           <Route path="/product/:id" element={<SingleProduct />} />

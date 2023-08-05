@@ -3,24 +3,36 @@
   margin: 0 auto;
   margin-bottom: 30px;
 }
-.video-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  padding-top: 56.25%;
-}
-.video-container > * {
-  position: absolute;
-  top: 6%;
-  width: 100%;
-  height: 100%;
-}
 
-@media (max-width: 768px) {
+.section__subtitle {
+  text-align: center;
+  color: #8b0000;
+}
+.layout-choose-us {
+  margin-bottom: 4%;
+  .section__title {
+    text-align: center;
+    font-weight: 600;
+  }
   .video-container {
-    padding-top: 0;
-    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-top: 56.25%;
+  }
+  .video-container > * {
+    position: absolute;
+    top: 1%;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .video-container {
+      padding-top: 0;
+      height: 200px;
+    }
   }
 }
 

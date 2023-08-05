@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { TbSearch } from "react-icons/tb";
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineUser } from "react-icons/ai";
+import { GrMapLocation } from "react-icons/gr";
 
 import Search from "./Search/Search";
 import Cart from "./Cart/Cart";
@@ -84,6 +85,11 @@ const Header = () => {
   return (
     <div>
       <header className={`main-header ${scrolled ? "sticky-header" : ""}`}>
+        <div className="header-top">
+          <button onClick={() => navigate("/location")}>
+            <span>5</span> STORE SYSTEM
+          </button>
+        </div>
         <div className="header-content">
           <ul className="left">
             <li onClick={() => navigate("/")}>Home</li>

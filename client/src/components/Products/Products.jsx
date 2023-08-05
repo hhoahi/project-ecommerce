@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import "./Products.scss";
 import Product from "./Product/Product";
+import { IoIosArrowForward } from "react-icons";
 
 const Products = ({ products, innerPage, headingText }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8; 
- 
+  const itemsPerPage = 8;
+
   if (!products || !products.data) {
     return null;
   }
 
   const totalPages = Math.ceil(products.data.length / itemsPerPage);
-  
+
   const getCurrentProducts = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     return products.data.slice(startIndex, endIndex);
   };
- 
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -31,16 +32,25 @@ const Products = ({ products, innerPage, headingText }) => {
         ))}
       </div>
 
-      
       <div className="pagination">
         {Array.from({ length: totalPages }, (_, index) => index + 1).map(
-          (pageNumber) => (
+          (pageNumber, index, array) => (
             <button
               key={pageNumber}
               onClick={() => handlePageChange(pageNumber)}
               disabled={pageNumber === currentPage}
             >
-              {pageNumber}
+              {index === 2 ? (
+                <span>
+                  <IoIosArrowForward />
+                </span>
+              ) : index === 3 ? (
+                <span>
+                  <IoIosArrowForward />
+                </span>
+              ) : (
+                pageNumber
+              )}
             </button>
           )
         )}

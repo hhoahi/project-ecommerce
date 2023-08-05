@@ -31,14 +31,16 @@ function About() {
         </div>
 
         <div className="layout-choose-us">
+          <h6 className="section__subtitle">ADAM STORE</h6>
+          <h2 className="section__title">ADAM STORE I THE BEAT OF SEOUL</h2>
           <div className="video-container">
             <ReactPlayer
-              url="https://www.youtube.com/watch?v=Szgcckuib7I"
+              url="https://www.youtube.com/watch?v=7euAFwjg0-Q"
               controls
               playing
               loop
               width="80%"
-              height="80%"
+              height="100%"
             />
           </div>
         </div>

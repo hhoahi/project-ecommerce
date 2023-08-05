@@ -16,6 +16,13 @@ export const userData = () => {
     return JSON.parse(stringifiedUser || {});
 };
 
+export const getUser = () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    console.log(user)
+    const userProfile = user
+    return userProfile
+}
+
 export const Protector = ({ Component }) => {
     const navigate = useNavigate();
 

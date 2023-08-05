@@ -1,34 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import { FaUserAlt } from "react-icons/fa";
 import "./Profile.scss";
+import { getUser } from "../../../utils/helpers";
 
 const Profile = () => {
-  const [userData, setUserData] = useState({});
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get("/api/users");
-        if (response.data && response.data.length > 0) {
-          setUserData(response.data[0]);
-        }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    fetchUserData();
-  }, []);
+  const userProfile = getUser();
+  console.log(userProfile);
 
   return (
     <div className="profile">
       <div className="profile_account">
         <div className="profile_account_info">
-          <p>{userData.username}</p>
+          <p>{userProfile.username}</p>
         </div>
       </div>
 
