@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import "./Product.scss";
 
+
 const stripeAppDevUrl = process.env.REACT_APP_STRIPE_APP_DEV_URL;
 
 const Product = ({ id, data }) => {
   const navigate = useNavigate();
+  
   return (
     <div className="product-card" onClick={() => navigate("/product/" + id)}>
       <div className="thumbnail">

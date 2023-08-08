@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./Products.scss";
 import Product from "./Product/Product";
-import { IoIosArrowForward } from "react-icons";
+
+import { IoIosArrowForward } from "react-icons/io";
+
 
 const Products = ({ products, innerPage, headingText }) => {
   const [currentPage, setCurrentPage] = useState(1);

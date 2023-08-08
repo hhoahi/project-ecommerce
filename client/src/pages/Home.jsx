@@ -11,8 +11,10 @@ import { fetchDataFromApi } from "../utils/api";
 import { Context } from "../utils/context";
 
 const Home = () => {
-  const { categories, setCategories, products, setProducts } =
+  const { categories, setCategories, products, setProducts, setProductAdmin } =
     useContext(Context);
+  
+  
 
   const getProducts = useCallback(() => {
     fetchDataFromApi("/api/products?populate=*").then((res) => {
@@ -28,12 +30,18 @@ const Home = () => {
     });
   }, [setCategories]);
 
+  const getProductsAdmin = useCallback(() => {
+    fetchDataFromApi("/api/products?populate=*").then((res) => {
+      console.log(res);
+      setProductAdmin(res);
+    });
+  }, [setProductAdmin]);
+
   useEffect(() => {
     getProducts();
     getCategories();
-  }, [getProducts, getCategories]);
-
-
+    getProductsAdmin();
+  }, [getProducts, getCategories, getProductsAdmin]);
 
   return (
     <div>
@@ -63,7 +71,6 @@ const Home = () => {
           <div className="layout-product">
             <Products products={products} headingText="Popular Products" />
           </div>
-
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ const AppContext = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
   const [cartSubTotal, setCartSubTotal] = useState(0);
   const location = useLocation();
+  const [productAdmin, setProductAdmin] = useState([])
 
   //cuộn đến đầu trang mỗi khi location thay đổi
   useEffect(() => {
@@ -74,6 +75,8 @@ const AppContext = ({ children }) => {
         handleAddToCart,
         handleRemoveFromCart,
         handleCartProductQuantity,
+        productAdmin,
+        setProductAdmin,
       }}
     >
       {children}

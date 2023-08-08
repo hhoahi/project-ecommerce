@@ -7,6 +7,10 @@ import {
 } from 'react-icons/fa';
 import "./Newsletter.scss";
 const Newsletter = () => {
+    const facebookLink = 'https://www.w3schools.com/js/'
+    const TwitterLink = 'https://www.w3schools.com/js/'
+    const InstagramLink = 'https://www.w3schools.com/js/'
+    const InLink = 'https://www.w3schools.com/js/'
     return <div className='newsletter-secton'>
         <div className='newsletter-content'>
             <span className='small-text'>Newsletter</span>
@@ -20,16 +24,24 @@ const Newsletter = () => {
             <div className='text'>Will be used in accordance with our Privacy Policy</div>
             <div className='social-icons'>
                 <div className='icon'>
-                    <FaFacebookF size={14} />
+                    <a href={facebookLink} target="_blank" rel="noopener noreferrer">
+                     <FaFacebookF size={14} />
+                    </a>
                 </div>
                 <div className='icon'>
+                    <a>
                     <FaTwitter size={14} />
+                    </a>
                 </div>
                 <div className='icon'>
+                    <a>
                     <FaInstagram size={14} />
+                    </a>
                 </div>
                 <div className='icon'>
+                    <a>
                     <FaLinkedinIn size={14} />
+                    </a>
                 </div>
             </div>
         </div>
