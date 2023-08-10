@@ -17,7 +17,9 @@ const Category = ({ categories }) => {
               onClick={() => navigate(`/category/${item.id}`)}
             >
               <img
-                src={stripeAppDevUrl + item.attributes.img.data.attributes.url}
+                src={
+                  stripeAppDevUrl + item?.attributes?.img?.data?.attributes?.url
+                }
                 alt=""
               />
             </div>

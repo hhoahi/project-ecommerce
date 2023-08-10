@@ -1,8 +1,11 @@
 import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import { useState } from "react";
 import { Context } from "../../utils/context";
 import { useNavigate } from "react-router-dom";
+
+const stripeAppDevUrl = process.env.REACT_APP_STRIPE_APP_DEV_URL;
 
 const Admin = () => {
   const [empdata, setEmpdata] = useState([]);
@@ -10,14 +13,14 @@ const Admin = () => {
   // const { productAdmin } = useContext(Context);
 
   const LoadDetail = (id) => {
-    navigate("/api/detail/" + id);
+    navigate("/api/products/detail/" + id);
   };
   const LoadEdit = (id) => {
-    navigate("/api/edit/" + id);
+    navigate("/api/products/:id" + id);
   };
   const Removefunction = (id) => {
     if (window.confirm("Do you want to remove?")) {
-      fetch("http://localhost:1337/api/" + id, {
+      fetch("http://localhost:1337/api/products?populate=*/" + id, {
         method: "DELETE",
       })
         .then((res) => {
@@ -41,6 +44,7 @@ const Admin = () => {
       });
   }, []);
   console.log(empdata);
+
   return (
     <div className="container" style={{ textAlign: "center" }}>
       <div className="card">
@@ -48,6 +52,11 @@ const Admin = () => {
           <h2>List</h2>
         </div>
         <div className="card-body">
+          <div className="divbtn">
+            <Link to="/api/products" className="btn btn-success">
+              Add New (+)
+            </Link>
+          </div>
           <table className="table table-bordered">
             <thead className="bg-dark text-white">
               <tr>
@@ -55,6 +64,7 @@ const Admin = () => {
                 <td>Title</td>
                 <td>Desc</td>
                 <td>Price</td>
+                <td>img</td>
                 <td>Action</td>
               </tr>
             </thead>
@@ -67,14 +77,23 @@ const Admin = () => {
                     <td>{item.attributes.desc}</td>
                     <td>{item.attributes.price}</td>
                     <td>
-                      <a
-                        onClick={() => {
-                          LoadEdit(item.id);
-                        }}
+                      <img
+                        src={
+                          stripeAppDevUrl +
+                          item.attributes.img.data[0].attributes.url
+                        }
+                        alt=""
+                        style={{ width: "100px", height: "50px" }}
+                      />
+                    </td>
+
+                    <td>
+                      <Link
+                        to={`/api/products/${item.id}`}
                         className="btn btn-success"
                       >
                         Edit
-                      </a>
+                      </Link>
                       <a
                         onClick={() => {
                           Removefunction(item.id);
