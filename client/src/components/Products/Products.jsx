@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./Products.scss";
 import Product from "./Product/Product";
-import { IoIosArrowForward } from "react-icons";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
 const Products = ({ products, innerPage, headingText }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -42,11 +43,11 @@ const Products = ({ products, innerPage, headingText }) => {
             >
               {index === 2 ? (
                 <span>
-                  <IoIosArrowForward />
+                  <MdOutlineKeyboardArrowRight />
                 </span>
               ) : index === 3 ? (
                 <span>
-                  <IoIosArrowForward />
+                  <MdOutlineKeyboardDoubleArrowRight />
                 </span>
               ) : (
                 pageNumber

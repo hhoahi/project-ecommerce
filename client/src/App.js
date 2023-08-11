@@ -1,38 +1,42 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home";
-import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import EditProfile from "./components/Profile/EditProfile/EditProfile";
 import About from "./pages/About";
 import Location from "./pages/Location";
 import Categogy from "./components/Category/Category";
 import Categories from "./pages/Categories";
 import SingleProduct from "./pages/SingleProduct";
-import Newsletter from "./components/Footer/Newsletter/Newsletter";
+
+import Admin from "./admin/Admin";
+import Products from "./admin/Products/Products";
+import CreateProducts from "./admin/Products/CreateProducts/CreateProducts";
+import EditProducts from "./admin/Products/EditProducts/EditProducts";
 import AppContext from "./utils/context";
-import Button from "./components/UI/Button";
+import Layout from "./pages/Layout";
 
 function App() {
   return (
     <BrowserRouter>
       <AppContext>
-        <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/myprofile" element={<EditProfile />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/location" element={<Location />} />
+            <Route path="/categories/" element={<Categories />} />
+            <Route path="/category/:id" element={<Categogy />} />
+            <Route path="/product/:id" element={<SingleProduct />} />
+          </Route>
           <Route path="/admin" element={<Admin />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/about/" element={<About />} />
-          <Route path="/location" element={<Location />} />
-          <Route path="/categories/" element={<Categories />} />
-          <Route path="/category/:id" element={<Categogy />} />
-          <Route path="/product/:id" element={<SingleProduct />} />
+          <Route path="/products/" element={<Products />} />
+          <Route path="/api/products" element={<CreateProducts />} />
+          <Route path="/api/products/:id" element={<EditProducts />} />
         </Routes>
-        <Newsletter />
-        <Footer />
-        <Button />
       </AppContext>
     </BrowserRouter>
   );

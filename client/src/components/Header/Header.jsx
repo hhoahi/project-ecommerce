@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { TbSearch } from "react-icons/tb";
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineUser } from "react-icons/ai";
-import { GrMapLocation } from "react-icons/gr";
+
 
 import Search from "./Search/Search";
 import Cart from "./Cart/Cart";
-import Profile from "./Profile/Profile";
+import Profile from "../Profile/Profile";
 import logo from "../../assets/logo.jpg";
 import { debounce } from "lodash";
 import { Context } from "../../utils/context";
@@ -21,9 +21,9 @@ const Header = () => {
   const [showCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-  const { cartCount } = useContext(Context);
+  const { cartCount, isOpen, setIsOpen } = useContext(Context);
 
-  const [isOpen, setIsOpen] = useState(false);
+  
   const [scrolled, setScrolled] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
 
@@ -67,6 +67,8 @@ const Header = () => {
     console.log(userInfo);
     if (userInfo) {
       setIsLogin(true);
+    } else {
+      return null
     }
   }, []);
 
@@ -79,7 +81,9 @@ const Header = () => {
   function handleLogout() {
     localStorage.clear();
     // localStorage.removeItem('userInfo');
+    navigate('/')
     setIsLogin(false);
+    
   }
 
   return (
@@ -129,10 +133,14 @@ const Header = () => {
                 <AiOutlineUser className="icon-profile" onClick={handleClick} />
                 {isOpen && (
                   <div className="dropdown-content">
-                    <a href="/login" onClick={handleLogin}>
-                      Sign In
-                    </a>
-                    <a href="/admin">Admin</a>
+                    <div onClick={() => navigate("/login")}>
+                      <span className="btn-dropdown" onClick={handleLogin}>
+                        Sign In
+                      </span>
+                    </div>
+                    <div onClick={() => navigate("/admin")}>
+                      <span className="btn-dropdown">Admin</span>
+                    </div>
                   </div>
                 )}
               </li>

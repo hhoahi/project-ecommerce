@@ -8,6 +8,29 @@
   text-align: center;
   color: #8b0000;
 }
+
+.banner {
+  width: 100%;
+  height: 220px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: aliceblue;
+  background-image: linear-gradient(rgb(41, 43, 57, 0.5), rgb(41, 43, 57, 0.5)),
+    url("https://theme.hstatic.net/1000366669/1000908004/14/t-shirt.jpg?v=203");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 55px;
+  p {
+    width: 100%;
+  }
+  h2 {
+    width: 100%;
+  }
+}
+
 .layout-choose-us {
   margin-bottom: 4%;
   .section__title {

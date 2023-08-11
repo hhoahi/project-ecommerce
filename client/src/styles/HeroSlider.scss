@@ -12,7 +12,7 @@
 
   &-02 {
     background: linear-gradient(rgb(41, 43, 57, 0.5), rgb(41, 43, 57, 0.5)),
-      url("../assets/store/slideshow_2_master.webp");
+      url("../assets/store/slideshow_4_master.webp");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -20,7 +20,7 @@
 
   &-03 {
     background: linear-gradient(rgb(41, 43, 57, 0.5), rgb(41, 43, 57, 0.5)),
-      url("../assets/store/slideshow_3_master.webp");
+      url("../assets/store/slideshow_5_master.webp");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -83,7 +83,7 @@
   }
 
   .hero__slider .slider__content {
-    margin-top: -310px;
+    margin-top: -210px;
     h1 {
       font-size: 1.2rem;
     }

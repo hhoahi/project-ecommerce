@@ -11,3 +11,41 @@
   margin-left: 10%;
   width: 80%;
 }
+
+.layout-join {
+  border-radius: 8px;
+  background: linear-gradient(rgba(41, 43, 57, 0.55), rgba(41, 43, 57, 0.55)),
+    url("../assets/store/slideshow_2_master.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 55px 35px;
+  max-width: 79%;
+  margin-left: 10%;
+  position: relative;
+
+  h2 {
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+  }
+  p {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  button {
+    border-radius: 5px;
+    background-color: #fff;
+    color: #383941;
+    font-weight: 600;
+    position: absolute;
+    left: 50%;
+    bottom: 15px;
+    transform: translateX(-50%);
+    &:hover {
+      background-color: #000000;
+      color: #ffffff;
+    }
+  }
+}

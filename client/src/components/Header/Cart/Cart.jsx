@@ -7,6 +7,7 @@ import { Context } from "../../../utils/context";
 import { useNavigate } from "react-router-dom";
 import "./Cart.scss";
 import { makePaymentRequest } from "../../../utils/api";
+import { getUser } from "../../../utils/helpers";
 
 import { loadStripe } from "@stripe/stripe-js";
 
@@ -17,11 +18,17 @@ const Cart = ({ setShowCart }) => {
     process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
   );
 
+  const userProfile = getUser();
+  const userId = userProfile?.id;
+  console.log(userId);
+
   const handlePayment = async () => {
     try {
       const stripe = await stripePromise;
       const res = await makePaymentRequest.post("/api/orders", {
         products: cartItems,
+        userId: userId,
+        status: "Processing",
       });
 
       await stripe.redirectToCheckout({

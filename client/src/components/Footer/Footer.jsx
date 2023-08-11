@@ -89,7 +89,7 @@ const Footer = () => {
           <img src={Payment} alt="" />
         </div>
       </div>
-      <div class="footer-copyright text-center">
+      <div className="footer-copyright text-center">
         Copyrights © 2018 by {""}
         <a target="_blank" href="http://adamstorevn.com">
           Adamstore

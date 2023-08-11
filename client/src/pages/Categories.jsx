@@ -20,8 +20,14 @@ function Category() {
   }, [getProducts]);
 
   return (
-    <div className="layout-product">
-      <Products products={products} headingText="All Products" />
+    <div>
+      <div className="banner">
+        <p>Home/Introduction</p>
+        <h2>ADAMSTORE PRODUCTS</h2>
+      </div>
+      <div className="layout-product">
+        <Products products={products} headingText="All Products" />
+      </div>
     </div>
   );
 }

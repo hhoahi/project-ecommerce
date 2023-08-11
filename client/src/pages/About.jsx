@@ -12,6 +12,11 @@ function About() {
   return (
     <div className="main-content">
       <div className="layout">
+        <div className="banner">
+          <p>Home/Introduction</p>
+          <h2>ADAMSTORE ABOUT</h2>
+        </div>
+
         <div className="layout-about-us">
           <AboutUs />
         </div>

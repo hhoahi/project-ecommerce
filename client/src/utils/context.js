@@ -1,7 +1,13 @@
 import { useEffect } from "react";
 import { createContext, useState } from "react";
+import { getToken } from "./helpers";
 import { useLocation } from "react-router-dom";
+import Strapi from "strapi-sdk-js";
+
 export const Context = createContext();
+const jwt = getToken();
+const apiUrl = process.env.REACT_APP_STRIPE_APP_DEV_UR;
+const strapi = new Strapi(apiUrl);
 
 const AppContext = ({ children }) => {
   const [categories, setCategories] = useState();
@@ -10,6 +16,20 @@ const AppContext = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
   const [cartSubTotal, setCartSubTotal] = useState(0);
   const location = useLocation();
+  const [productAdmin, setProductAdmin] = useState([]);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const [userData, setUserData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user?.user.id;
 
   //cuộn đến đầu trang mỗi khi location thay đổi
   useEffect(() => {
@@ -74,6 +94,12 @@ const AppContext = ({ children }) => {
         handleAddToCart,
         handleRemoveFromCart,
         handleCartProductQuantity,
+        userData,
+        setUserData,
+        isOpen,
+        setIsOpen,
+        productAdmin,
+        setProductAdmin,
       }}
     >
       {children}

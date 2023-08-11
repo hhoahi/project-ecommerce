@@ -84,7 +84,7 @@
       .nav-right-btn {
         position: relative;
         display: inline-block;
-        z-index: 999;
+        z-index: 97;
 
         .icon-profile {
           width: 25px;
@@ -104,18 +104,36 @@
           min-width: 150px;
           box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 
-          a {
+          .btn-dropdown {
+            padding: 12px 10px;
+            &:hover {
+              border-radius: 5px;
+              background-color: #000000;
+              color: #ffffff;
+              font-weight: 200;
+            }
+          }
+
+          span {
             display: block;
-            padding: 12px 16px;
             text-decoration: none;
             text-align: center;
             color: #333;
           }
 
-          a:hover {
-            background-color: #333;
+          span:hover {
+            font-weight: 700;
+          }
+
+          button {
             border-radius: 5px;
-            color: #f8f8f8;
+            background-color: #8b0000;
+            color: #eee;
+            font-weight: 600;
+            &:hover {
+              background-color: #000000;
+              color: #ffffff;
+            }
           }
         }
       }
@@ -163,6 +181,7 @@
           display: block;
           cursor: pointer;
           margin-top: 25px;
+          z-index: 999;
           span {
             display: block;
             width: 20px;

@@ -14,7 +14,7 @@ const Product = ({ id, data }) => {
         <span className="name">
           {data.title.slice(0, 30)}
           {data.title.length > 30 ? "..." : ""}
-        </span>{" "}
+        </span>
         <br />
         <span className="price">&#x24;{data.price}</span>
       </div>
