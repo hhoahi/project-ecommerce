@@ -13,7 +13,12 @@ const initialProduct = {
 const Create = () => {
   const [id, idchange] = useState("");
   const [product, setProduct] = useState(initialProduct);
-
+  const categories = [
+    { id: "shirt", name: "SHIRT" },
+    { id: "suit", name: "SUIT" },
+    { id: "tshirt", name: "T-SHIRT" },
+    { id: "trousers", name: "TROUSERS" },
+  ];
 
   const handleProductChange = (e) => {
     const { name, value } = e.target;
@@ -82,6 +87,19 @@ const Create = () => {
 
                   <div className="col-lg-12">
                     <div className="form-group">
+                      <label>categories</label>
+                      <input
+                        type="text"
+                        name="title"
+                        value={product.categories}
+                        onChange={handleProductChange}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="col-lg-12">
+                    <div className="form-group">
                       <label>Desc</label>
                       <input
                         type="text"
@@ -108,10 +126,29 @@ const Create = () => {
 
                   <div className="col-lg-12">
                     <div className="form-group">
+                      <label>Categories</label>
+                      <select
+                        name="categories"
+                        value={product.categories}
+                        onChange={handleProductChange}
+                        required
+                      >
+                        <option value="">Select a category</option>
+                        {categories.map((category) => (
+                          <option key={category.id} value={category.id}>
+                            {category.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="col-lg-12">
+                    <div className="form-group">
                       <button className="btn btn-success" type="submit">
                         Save
                       </button>
-                      <Link to="/admin" className="btn btn-danger">
+                      <Link to="/productlist" className="btn btn-danger">
                         Back
                       </Link>
                     </div>

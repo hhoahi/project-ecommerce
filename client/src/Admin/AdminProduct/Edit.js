@@ -13,7 +13,11 @@ import { useParams } from "react-router-dom";
 const Edit = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({
+    title: "",
+    desc: "",
+    price: 0,
+  });
 
   useEffect(() => {
     // Gọi API để lấy thông tin sản phẩm
@@ -46,11 +50,17 @@ const Edit = () => {
     try {
       const response = await axios.put(
         `http://localhost:1337/api/products/${id}`,
-        product
+        {
+          data: {
+            title: product.data.attributes.title,
+            desc: product.data.attributes.desc,
+            price: product.data.attributes.price,
+          },
+        }
       );
       if (response.status >= 200 && response.status < 300) {
         toast.success("Product updated successfully!");
-        navigate.push("/admin"); // Chuyển hướng về trang danh sách sản phẩm sau khi chỉnh sửa thành công
+        navigate("/admin");
       } else {
         toast.error("Error updating product. Please try again.");
       }
@@ -58,6 +68,7 @@ const Edit = () => {
       toast.error("Error updating product. Please try again.");
     }
   };
+
   console.log(product);
   return (
     <div>
@@ -126,7 +137,7 @@ const Edit = () => {
                         <button className="btn btn-success" type="submit">
                           Save
                         </button>
-                        <Link to="/admin" className="btn btn-danger">
+                        <Link to="/productlist" className="btn btn-danger">
                           Back
                         </Link>
                       </div>

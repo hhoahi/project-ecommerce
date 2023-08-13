@@ -132,7 +132,7 @@ const Header = () => {
                     <a href="/login" onClick={handleLogin}>
                       Sign In
                     </a>
-                    <a href="/admin">Admin</a>
+                    <a href="/productlist">Admin</a>
                   </div>
                 )}
               </li>

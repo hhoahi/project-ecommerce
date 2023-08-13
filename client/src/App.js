@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home";
-import Admin from "./components/AdminProduct/Admin";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import About from "./pages/About";
@@ -13,8 +12,10 @@ import SingleProduct from "./pages/SingleProduct";
 import Newsletter from "./components/Footer/Newsletter/Newsletter";
 import AppContext from "./utils/context";
 import Button from "./components/UI/Button";
-import Create from "./components/AdminProduct/Create";
-import Edit from "./components/AdminProduct/Edit";
+import ProductList from "./Admin/AdminProduct/ProductList";
+import Create from "./Admin/AdminProduct/Create";
+import Edit from "./Admin/AdminProduct/Edit";
+import CategoryList from "./Admin/AdminCategory/CategoryList";
 
 function App() {
   return (
@@ -23,7 +24,6 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/admin" element={<Admin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/about/" element={<About />} />
@@ -31,8 +31,10 @@ function App() {
           <Route path="/categories/" element={<Categories />} />
           <Route path="/category/:id" element={<Categogy />} />
           <Route path="/product/:id" element={<SingleProduct />} />
+          <Route path="/productlist" element={<ProductList />} />
           <Route path="/api/products" element={<Create />} />
           <Route path="/api/products/:id" element={<Edit />} />
+          <Route path="/admin/category" element={<CategoryList />} />
         </Routes>
         <Newsletter />
         <Footer />

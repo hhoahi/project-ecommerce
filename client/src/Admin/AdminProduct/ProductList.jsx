@@ -1,37 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import { useState } from "react";
-import { Context } from "../../utils/context";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const stripeAppDevUrl = process.env.REACT_APP_STRIPE_APP_DEV_URL;
 
-const Admin = () => {
+const ProductList = () => {
   const [empdata, setEmpdata] = useState([]);
-  const navigate = useNavigate();
-  // const { productAdmin } = useContext(Context);
-
-  const LoadDetail = (id) => {
-    navigate("/api/products/detail/" + id);
-  };
-  const LoadEdit = (id) => {
-    navigate("/api/products/:id" + id);
-  };
-  const Removefunction = (id) => {
-    if (window.confirm("Do you want to remove?")) {
-      fetch("http://localhost:1337/api/products?populate=*/" + id, {
-        method: "DELETE",
-      })
-        .then((res) => {
-          alert("Removed successfully.");
-          window.location.reload();
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    }
-  };
 
   useEffect(() => {
     fetch("http://localhost:1337/api/products?populate=*")
@@ -45,6 +20,36 @@ const Admin = () => {
   }, []);
   console.log(empdata);
 
+  const handleRemove = async (productId) => {
+    try {
+      const confirmRemove = window.confirm(
+        "Are you sure you want to remove this product?"
+      );
+      if (!confirmRemove) {
+        return;
+      }
+
+      const response = await fetch(
+        `http://localhost:1337/api/products/${productId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (response.status >= 200 && response.status < 300) {
+        const updatedEmpdata = empdata.filter((item) => item.id !== productId);
+        setEmpdata(updatedEmpdata);
+        toast.success("Product removed successfully");
+      } else {
+        console.error("Error removing product");
+        toast.error("Error removing product");
+      }
+    } catch (error) {
+      console.error("Error removing product", error);
+      toast.error("Error removing product");
+    }
+  };
+
   return (
     <div className="container" style={{ textAlign: "center" }}>
       <div className="card">
@@ -57,10 +62,17 @@ const Admin = () => {
               Add New (+)
             </Link>
           </div>
+
+          <div className="divbtn">
+            <Link to="/admin/category" className="btn btn-success">
+              category
+            </Link>
+          </div>
           <table className="table table-bordered">
             <thead className="bg-dark text-white">
               <tr>
                 <td>ID</td>
+                <td>Categogy</td>
                 <td>Title</td>
                 <td>Desc</td>
                 <td>Price</td>
@@ -73,6 +85,9 @@ const Admin = () => {
                 empdata.map((item) => (
                   <tr key={item.id}>
                     <td>{item.id}</td>
+                    <td>
+                      {item.attributes?.categories?.data?.attributes?.title}
+                    </td>
                     <td>{item.attributes.title}</td>
                     <td>{item.attributes.desc}</td>
                     <td>{item.attributes.price}</td>
@@ -83,7 +98,7 @@ const Admin = () => {
                           item.attributes.img.data[0].attributes.url
                         }
                         alt=""
-                        style={{ width: "100px", height: "50px" }}
+                        style={{ width: "100px", height: "100px" }}
                       />
                     </td>
 
@@ -94,22 +109,14 @@ const Admin = () => {
                       >
                         Edit
                       </Link>
+
                       <a
-                        onClick={() => {
-                          Removefunction(item.id);
-                        }}
                         className="btn btn-danger"
+                        onClick={() => handleRemove(item.id)}
                       >
                         Remove
                       </a>
-                      <a
-                        onClick={() => {
-                          LoadDetail(item.id);
-                        }}
-                        className="btn btn-primary"
-                      >
-                        Details
-                      </a>
+                      <a className="btn btn-primary">Details</a>
                     </td>
                   </tr>
                 ))}
@@ -121,4 +128,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default ProductList;
