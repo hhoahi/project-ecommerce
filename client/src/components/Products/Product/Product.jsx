@@ -7,9 +7,9 @@ const Product = ({ id, data }) => {
   const navigate = useNavigate();
   return (
     <div className="product-card" onClick={() => navigate("/product/" + id)}>
-      <div className="thumbnail">
+      {data.img.data && data.img.data.length > 0 && (
         <img src={stripeAppDevUrl + data.img.data[0].attributes.url} alt="" />
-      </div>
+      )}
       <div className="prod-detail">
         <span className="name">
           {data.title.slice(0, 30)}
@@ -21,7 +21,5 @@ const Product = ({ id, data }) => {
     </div>
   );
 };
-
-
 
 export default Product;

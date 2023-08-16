@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/store/blog_banner_1_grande.webp";
 
 import "../styles/Login.scss";
+import { getProfile } from "../utils/api";
 
 const initialUser = { password: "", identifier: "" };
 
@@ -26,13 +27,25 @@ export const Login = () => {
       const url = `http://localhost:1337/api/auth/local`;
       if (user.identifier && user.password) {
         const { data } = await axios.post(url, user);
+        const userId = data.user?.id;
+        storeUser(data);
         if (data.jwt) {
-          storeUser(data);
-          toast.success("Logged in successfully!", {
-            hideProgressBar: true,
-          });
           setUser(initialUser);
-          navigate("/");
+          const { data } = await getProfile.get(
+            `/api/users/${userId}?populate=*`
+          );
+          console.log(data);
+          if (data.role && data.role.type === "admin") {
+            navigate("/admin");
+            toast.success("Logged in successfully!", {
+              hideProgressBar: true,
+            });
+          } else {
+            toast.success("Logged in successfully!", {
+              hideProgressBar: true,
+            });
+            navigate("/");
+          }
         }
       }
     } catch (error) {

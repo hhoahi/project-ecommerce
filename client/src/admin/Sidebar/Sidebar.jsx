@@ -1,6 +1,6 @@
 import React from "react";
 import "./Sidebar.scss";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import {
   BsCart3,
   BsGrid1X2Fill,
@@ -10,6 +10,7 @@ import {
   BsListCheck,
   BsMenuButtonWideFill,
   BsFillGearFill,
+  BsBoxArrowRight,
 } from "react-icons/bs";
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
@@ -61,6 +62,11 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
         <li className="sidebar-list-item">
           <Link to="/">
             <BsPeopleFill className="icon" /> View User
+          </Link>
+        </li>
+        <li className="sidebar-list-item">
+          <Link to="/">
+            <BsBoxArrowRight className="icon" /> Logout
           </Link>
         </li>
       </ul>

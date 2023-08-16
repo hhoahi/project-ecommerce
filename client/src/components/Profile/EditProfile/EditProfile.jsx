@@ -49,7 +49,6 @@ function EditProfile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await getUserProfile.put(`/api/users/${userId}`, {
         username: userData.username,

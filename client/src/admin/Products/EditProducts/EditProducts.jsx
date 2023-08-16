@@ -1,17 +1,37 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { getDataAdmin } from "../../../utils/api";
 import { toast } from "react-toastify";
+import Sidebar from "../../Sidebar/Sidebar";
 import { useParams } from "react-router-dom";
 
-function EditProducts() {
+const Edit = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [product, setProduct] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [product, setProduct] = useState({
+    title: "",
+    desc: "",
+    price: 0,
+  });
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await getDataAdmin.get("/api/categories");
+        if (response.status === 200) {
+          setCategories(response.data.data);
+        }
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     // Gọi API để lấy thông tin sản phẩm
-    axios
+    getDataAdmin
       .get(`http://localhost:1337/api/products/${id}`)
       .then((response) => {
         setProduct(response.data);
@@ -38,13 +58,19 @@ function EditProducts() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(
+      const response = await getDataAdmin.put(
         `http://localhost:1337/api/products/${id}`,
-        product
+        {
+          data: {
+            title: product.data.attributes.title,
+            desc: product.data.attributes.desc,
+            price: product.data.attributes.price,
+          },
+        }
       );
       if (response.status >= 200 && response.status < 300) {
         toast.success("Product updated successfully!");
-        navigate.push("/admin"); // Chuyển hướng về trang danh sách sản phẩm sau khi chỉnh sửa thành công
+        navigate("/products");
       } else {
         toast.error("Error updating product. Please try again.");
       }
@@ -52,84 +78,76 @@ function EditProducts() {
       toast.error("Error updating product. Please try again.");
     }
   };
+
   console.log(product);
   return (
-    <div>
-          {product && product.data && product.data.attributes && (
-            <form className="container" onSubmit={handleSubmit}>
-              <div className="card-products" style={{ textAlign: "left" }}>
-                <div className="card-title">
-                  <h2>Edit Product</h2>
-                </div>
-                <div className="card-body">
-                  <div className="row">
-                    <div className="col-lg-12">
-                      <div className="form-group">
-                        <label>ID</label>
-                        <input
-                          value={id}
-                          disabled="disabled"
-                          className="form-control"
-                        ></input>
-                      </div>
-                    </div>
+    <div className="grid-container">
+      <Sidebar />
+      <div className="main-container">
+        {product && product.data && product.data.attributes && (
+          <form className="container-create" onSubmit={handleSubmit}>
+            <h3>Edit Product</h3>
+            <div className="card-body">
+              <label>ID</label>
+              <input
+                value={id}
+                disabled="disabled"
+                className="form-control"
+              ></input>
 
-                    <div className="col-lg-12">
-                      <div className="form-group">
-                        <label>Title</label>
-                        <input
-                          type="text"
-                          name="title"
-                          value={product.data.attributes.title}
-                          onChange={handleProductChange}
-                          required
-                        />
-                      </div>
-                    </div>
+              <label>Product name</label>
+              <input
+                type="text"
+                name="title"
+                value={product.data.attributes.title}
+                onChange={handleProductChange}
+                required
+              />
 
-                    <div className="col-lg-12">
-                      <div className="form-group">
-                        <label>Desc</label>
-                        <input
-                          type="text"
-                          name="desc"
-                          value={product.data.attributes.desc}
-                          onChange={handleProductChange}
-                          required
-                        />
-                      </div>
-                    </div>
+              <label>Product description</label>
+              <input
+                type="text"
+                name="desc"
+                value={product.data.attributes.desc}
+                onChange={handleProductChange}
+                required
+              />
 
-                    <div className="col-lg-12">
-                      <div className="form-group">
-                        <label>Price</label>
-                        <input
-                          type="number"
-                          name="price"
-                          value={product.data.attributes.price}
-                          onChange={handleProductChange}
-                          required
-                        />
-                      </div>
-                    </div>
+              <label>Price</label>
+              <input
+                type="number"
+                name="price"
+                value={product.data.attributes.price}
+                onChange={handleProductChange}
+                required
+              />
 
-                    <div className="col-lg-12">
-                      <div className="form-group">
-                        <button className="btn btn-success" type="submit">
-                          Save
-                        </button>
-                        <Link to="/admin" className="btn btn-danger">
-                          Back
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-          )}
+              <label>
+                Choose a category: {""}
+                <select
+                  name="categories"
+                  value={product.categories}
+                  onChange={handleProductChange}
+                  required
+                  className="categories-select"
+                >
+                  {categories.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.attributes.title}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <button className="btn btn-success" type="submit">
+                Save
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
     </div>
   );
-}
+};
 
-export default EditProducts;
+export default Edit;

@@ -6,7 +6,6 @@ import { TbSearch } from "react-icons/tb";
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineUser } from "react-icons/ai";
 
-
 import Search from "./Search/Search";
 import Cart from "./Cart/Cart";
 import Profile from "../Profile/Profile";
@@ -23,7 +22,6 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const { cartCount, isOpen, setIsOpen } = useContext(Context);
 
-  
   const [scrolled, setScrolled] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
 
@@ -68,7 +66,7 @@ const Header = () => {
     if (userInfo) {
       setIsLogin(true);
     } else {
-      return null
+      return null;
     }
   }, []);
 
@@ -80,10 +78,8 @@ const Header = () => {
 
   function handleLogout() {
     localStorage.clear();
-    // localStorage.removeItem('userInfo');
-    navigate('/')
+    navigate("/");
     setIsLogin(false);
-    
   }
 
   return (
@@ -138,8 +134,8 @@ const Header = () => {
                         Sign In
                       </span>
                     </div>
-                    <div onClick={() => navigate("/admin")}>
-                      <span className="btn-dropdown">Admin</span>
+                    <div onClick={() => navigate("/register")}>
+                      <span className="btn-dropdown">Register</span>
                     </div>
                   </div>
                 )}

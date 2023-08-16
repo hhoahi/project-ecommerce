@@ -10,8 +10,8 @@ import Categories from "./pages/Categories";
 import SingleProduct from "./pages/SingleProduct";
 
 import Admin from "./admin/Admin";
-import Products from "./admin/Products/Products";
-import CreateProducts from "./admin/Products/CreateProducts/CreateProducts";
+import ViewProducts from "./admin/Products/ViewProducts/ViewProducts";
+import AddProducts from "./admin/Products/AddProducts/AddProducts";
 import EditProducts from "./admin/Products/EditProducts/EditProducts";
 import AppContext from "./utils/context";
 import Layout from "./pages/Layout";
@@ -33,8 +33,8 @@ function App() {
             <Route path="/product/:id" element={<SingleProduct />} />
           </Route>
           <Route path="/admin" element={<Admin />} />
-          <Route path="/products/" element={<Products />} />
-          <Route path="/api/products" element={<CreateProducts />} />
+          <Route path="/products/" element={<ViewProducts />} />
+          <Route path="/api/products" element={<AddProducts />} />
           <Route path="/api/products/:id" element={<EditProducts />} />
         </Routes>
       </AppContext>

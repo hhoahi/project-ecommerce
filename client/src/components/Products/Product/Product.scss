@@ -5,8 +5,14 @@
   margin-bottom: 20px;
   border-radius: 8px;
   overflow: hidden;
-  @include md {
+  @include lg {
     width: calc(20% - 5px);
+    img {
+      width: 100%;
+    }
+  }
+  img {
+    width: 100%;
   }
   .thumbnail {
     width: 100%;
