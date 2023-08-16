@@ -8,7 +8,7 @@ const stripeAppDevUrl = process.env.REACT_APP_STRIPE_APP_DEV_URL;
 
 const CategoryList = () => {
   const [empdata, setEmpdata] = useState([]);
-  const [listProduct, setListProduct] = useState([])
+  const [listProduct, setListProduct] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null); // Thêm trạng thái để theo dõi danh mục được chọn
   const [selectedCategoryProducts, setSelectedCategoryProducts] = useState([]);
 
@@ -102,7 +102,9 @@ const CategoryList = () => {
                   <tr key={item.id}>
                     <td>{item.id}</td>
                     <td>{item.attributes.title}</td>
-                    <td>{item.attributes.products.data[0].attributes.title}</td>
+                    <td>
+                      {item.attributes.products.data[0].attributes.title}
+                    </td>
                     <td>
                       <a
                         className="btn btn-primary"

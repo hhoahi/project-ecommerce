@@ -16,6 +16,7 @@ import ProductList from "./Admin/AdminProduct/ProductList";
 import Create from "./Admin/AdminProduct/Create";
 import Edit from "./Admin/AdminProduct/Edit";
 import CategoryList from "./Admin/AdminCategory/CategoryList";
+import CreateProduct from "./Admin/AdminProduct/CreateProduct";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/api/products" element={<Create />} />
           <Route path="/api/products/:id" element={<Edit />} />
           <Route path="/admin/category" element={<CategoryList />} />
+          <Route path="/create" element={<CreateProduct />} />
         </Routes>
         <Newsletter />
         <Footer />

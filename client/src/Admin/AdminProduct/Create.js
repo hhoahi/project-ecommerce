@@ -6,19 +6,22 @@ const initialProduct = {
   title: "",
   desc: "",
   price: 0,
-  img: "",
-  categories: "",
+  img: null,
 };
 
 const Create = () => {
   const [id, idchange] = useState("");
   const [product, setProduct] = useState(initialProduct);
-  const categories = [
-    { id: "shirt", name: "SHIRT" },
-    { id: "suit", name: "SUIT" },
-    { id: "tshirt", name: "T-SHIRT" },
-    { id: "trousers", name: "TROUSERS" },
-  ];
+
+  
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      img: file,
+    }));
+  };
 
   const handleProductChange = (e) => {
     const { name, value } = e.target;
@@ -27,6 +30,7 @@ const Create = () => {
       [name]: value,
     }));
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -35,6 +39,7 @@ const Create = () => {
           title: product.title,
           desc: product.desc,
           price: product.price,
+          img: product.img,
         },
       });
       if (response.status >= 200 && response.status < 300) {
@@ -87,19 +92,6 @@ const Create = () => {
 
                   <div className="col-lg-12">
                     <div className="form-group">
-                      <label>categories</label>
-                      <input
-                        type="text"
-                        name="title"
-                        value={product.categories}
-                        onChange={handleProductChange}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col-lg-12">
-                    <div className="form-group">
                       <label>Desc</label>
                       <input
                         type="text"
@@ -126,20 +118,13 @@ const Create = () => {
 
                   <div className="col-lg-12">
                     <div className="form-group">
-                      <label>Categories</label>
-                      <select
-                        name="categories"
-                        value={product.categories}
-                        onChange={handleProductChange}
+                      <label>Image</label>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
                         required
-                      >
-                        <option value="">Select a category</option>
-                        {categories.map((category) => (
-                          <option key={category.id} value={category.id}>
-                            {category.name}
-                          </option>
-                        ))}
-                      </select>
+                      />
                     </div>
                   </div>
 

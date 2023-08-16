@@ -62,6 +62,11 @@ const ProductList = () => {
               Add New (+)
             </Link>
           </div>
+          <div className="divbtn">
+            <Link to="/create" className="btn btn-success">
+              Add New (+)
+            </Link>
+          </div>
 
           <div className="divbtn">
             <Link to="/admin/category" className="btn btn-success">
