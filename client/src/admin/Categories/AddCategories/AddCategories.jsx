@@ -1,19 +1,15 @@
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { getDataAdmin } from "../../../utils/api";
 import Sidebar from "../../Sidebar/Sidebar";
-import "./AddProducts.scss";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
+import "./AddCategories.scss";
 
-const initialProduct = {
+const initialCategories = {
   title: "",
-  desc: "",
-  price: 0,
-  categories: "",
 };
 
-function AddProducts({ setShowUserPage }) {
-  const [product, setProduct] = useState(initialProduct);
-  const [categories, setCategories] = useState([]);
+function AddCategories() {
+  const [categories, setCategories] = useState(initialCategories);
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
@@ -21,24 +17,10 @@ function AddProducts({ setShowUserPage }) {
   const token = JSON.parse(localStorage.getItem("user"));
   const jwt = token?.jwt;
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await getDataAdmin.get("/api/categories");
-        if (response.status === 200) {
-          setCategories(response.data.data);
-        }
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
-    fetchCategories();
-  }, []);
-
   const handleProductChange = (e) => {
     const { name, value } = e.target;
-    setProduct((prevProduct) => ({
-      ...prevProduct,
+    setCategories((prevCategories) => ({
+      ...prevCategories,
       [name]: value,
     }));
   };
@@ -62,13 +44,11 @@ function AddProducts({ setShowUserPage }) {
       console.log(uploadResponse);
 
       const response = await getDataAdmin.post(
-        "/api/products",
+        "/api/categories",
         {
           data: {
-            title: product.title,
-            desc: product.desc,
-            price: product.price,
-            categories: product.categories,
+            title: categories.title,
+            desc: categories.desc,
             img: uploadResponse.data[0].id,
           },
         },
@@ -104,7 +84,7 @@ function AddProducts({ setShowUserPage }) {
       <Sidebar />
       <div className="main-content">
         <form className="container-create" onSubmit={handleSubmit}>
-          <h3>Add Products</h3>
+          <h3>Add Categories</h3>
           {showSuccessMessage && (
             <div className="success-message">
               Successfully Updated.
@@ -116,47 +96,20 @@ function AddProducts({ setShowUserPage }) {
             <input
               type="text"
               name="title"
-              value={product.title}
+              value={categories.title}
               onChange={handleProductChange}
               required
             />
 
-            <label>Product description</label>
+            <label>Categories description</label>
             <input
               type="text"
               name="desc"
-              value={product.desc}
+              value={categories.desc}
               onChange={handleProductChange}
               required
             />
-
-            <label>Price</label>
-            <input
-              type="number"
-              name="price"
-              value={product.price}
-              onChange={handleProductChange}
-              required
-            />
-
-            <label>
-              Choose a category: {""}
-              <select
-                name="categories"
-                value={product.categories}
-                onChange={handleProductChange}
-                required
-                className="categories-select"
-              >
-                {categories.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.attributes.title}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <label>Upload product images</label>
+            <label>Upload categories images</label>
             <input
               type="file"
               onChange={handleFileChange}
@@ -167,13 +120,16 @@ function AddProducts({ setShowUserPage }) {
               {imageUrl && <img src={imageUrl} alt="Selected Image" />}
             </div>
             <button type="submit" value="Upload">
-              Add product
+              Add categories
             </button>
           </div>
         </form>
       </div>
+      {/* <button onClick={} className="add-cate">
+          <IoIosArrowUp />
+        </button> */}
     </div>
   );
 }
 
-export default AddProducts;
+export default AddCategories;

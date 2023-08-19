@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../../utils/context";
 import "./Sidebar.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   BsCart3,
   BsGrid1X2Fill,
@@ -9,16 +10,22 @@ import {
   BsPeopleFill,
   BsListCheck,
   BsMenuButtonWideFill,
-  BsFillGearFill,
   BsBoxArrowRight,
 } from "react-icons/bs";
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
+  // const [isLogin, setIsLogin] = useState(false);
+  const { setIsOpen, setIsLogin } = useContext(Context);
+  const navigate = useNavigate();
+  function handleLogout() {
+    localStorage.clear();
+    setIsLogin(false);
+    setIsOpen(false);
+    navigate("/");
+  }
+
   return (
-    <aside
-      id="sidebar"
-      className={openSidebarToggle ? "sidebar-responsive" : ""}
-    >
+    <div id="sidebar" className={openSidebarToggle ? "sidebar-responsive" : ""}>
       <div className="sidebar-title">
         <div className="sidebar-brand">
           <BsCart3 className="icon_header" /> ADAMSTORE
@@ -35,18 +42,13 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
           </Link>
         </li>
         <li className="sidebar-list-item">
-          <Link to="/">
+          <Link to="/categories/">
             <BsFillGrid3X3GapFill className="icon" /> Categories
           </Link>
         </li>
         <li className="sidebar-list-item">
-          <Link to="/">
+          <Link to="/api/categories/">
             <BsMenuButtonWideFill className="icon" /> Browse Categories
-          </Link>
-        </li>
-        <li className="sidebar-list-item">
-          <Link to="/api/products">
-            <BsListCheck className="icon" /> Add Products
           </Link>
         </li>
         <li className="sidebar-list-item">
@@ -55,22 +57,23 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
           </Link>
         </li>
         <li className="sidebar-list-item">
-          <Link to="/">
-            <BsFillGearFill className="icon" /> New User Requests
+          <Link to="/api/products">
+            <BsListCheck className="icon" /> Add Products
           </Link>
         </li>
         <li className="sidebar-list-item">
-          <Link to="/">
-            <BsPeopleFill className="icon" /> View User
+          <Link to="/users/">
+            <BsPeopleFill className="icon" /> User Management
           </Link>
         </li>
-        <li className="sidebar-list-item">
-          <Link to="/">
+
+        <li className="sidebar-list-item" onClick={handleLogout}>
+          <Link>
             <BsBoxArrowRight className="icon" /> Logout
           </Link>
         </li>
       </ul>
-    </aside>
+    </div>
   );
 }
 

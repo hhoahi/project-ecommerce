@@ -19,6 +19,7 @@ const AppContext = ({ children }) => {
   const [productAdmin, setProductAdmin] = useState([]);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   const [userData, setUserData] = useState({
     username: "",
@@ -100,6 +101,8 @@ const AppContext = ({ children }) => {
         setIsOpen,
         productAdmin,
         setProductAdmin,
+        isLogin,
+        setIsLogin
       }}
     >
       {children}

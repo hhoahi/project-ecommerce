@@ -7,10 +7,14 @@ import { CgDetailsMore } from "react-icons/cg";
 import "./ViewProducts.scss";
 import { getDataAdmin } from "../../../utils/api";
 
+const ITEMS_PER_PAGE = 9;
 const stripeAppDevUrl = process.env.REACT_APP_STRIPE_APP_DEV_URL;
 
-function Products() {
+function ViewProducts() {
   const [empdata, setEmpdata] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const navigate = useNavigate();
 
   const EditProduct = (id) => {
@@ -46,9 +50,23 @@ function Products() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getDataAdmin.get("/api/products?populate=*");
-        const data = await response.data;
-        setEmpdata(data.data);
+        // Lấy danh mục từ Strapi (ví dụ: /api/categories)
+        const responseCategories = await getDataAdmin.get("/api/categories");
+        const categoriesData = await responseCategories.data;
+
+        // Kiểm tra dữ liệu trả về có phải là mảng không
+        if (Array.isArray(categoriesData.data)) {
+          setCategories(categoriesData.data);
+        } else {
+          console.error("Categories data is not an array:", categoriesData);
+        }
+
+        // Lấy danh sách sản phẩm từ Strapi (ví dụ: /api/products?populate=*)
+        const responseProducts = await getDataAdmin.get(
+          "/api/products?populate=*"
+        );
+        const productsData = await responseProducts.data;
+        setEmpdata(productsData.data);
       } catch (error) {
         console.error(error.message);
       }
@@ -56,6 +74,37 @@ function Products() {
 
     fetchData();
   }, []);
+
+  // Tính chỉ mục bắt đầu và kết thúc của danh sách sản phẩm cho trang hiện tại
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+
+  // Lấy danh sách sản phẩm cho trang hiện tại
+  const currentPageData = empdata
+    .filter((item) => {
+      if (selectedCategory === "") {
+        return true; // Hiển thị tất cả sản phẩm nếu không có danh mục được chọn
+      }
+      return (
+        item.attributes.categories.data[0].id === parseInt(selectedCategory)
+      );
+    })
+    .slice(startIndex, endIndex);
+
+  // Tạo mảng chứa các nút phân trang
+  const paginationButtons = [];
+  const totalPages = Math.ceil(empdata.length / ITEMS_PER_PAGE);
+  for (let i = 1; i <= totalPages; i++) {
+    paginationButtons.push(
+      <button
+        key={i}
+        onClick={() => setCurrentPage(i)}
+        className={currentPage === i ? "active" : ""}
+      >
+        {i}
+      </button>
+    );
+  }
 
   return (
     <div className="grid-container">
@@ -65,75 +114,79 @@ function Products() {
           <div className="container" style={{ textAlign: "center" }}>
             <div className="products-content">
               <div className="card-title">
-                <h3>View All Product</h3>
+                <h3>View All Products</h3>
+                <div className="category-filter">
+                  <label htmlFor="category">Filter by Category: </label>
+                  <select
+                    id="category"
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                  >
+                    <option value="">All</option>
+                    {categories.map((category) => (
+                      <option key={category.id} value={category.id}>
+                        {category.attributes.title}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
               <div className="card-body">
-                <table className="table table-bordered">
-                  <thead className="bg-dark text-white">
-                    <tr>
-                      <td>ID</td>
-                      <td>Title</td>
-                      <td>Desc</td>
-                      <td>Price</td>
-                      <td>Category</td>
-                      <td>Image</td>
-                      <td>Action</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {empdata?.map((item) => (
-                      <tr key={item.id}>
-                        <td>{item.id}</td>
-                        <td>{item.attributes.title}</td>
-                        <td>
+                <div className="products-grid">
+                  {currentPageData.map((item) => (
+                    <div key={item.id} className="product-card">
+                      <div className="product-image">
+                        <img
+                          src={
+                            stripeAppDevUrl +
+                            item.attributes.img.data[0].attributes.url
+                          }
+                          alt={item.attributes.title}
+                        />
+                      </div>
+                      <div className="product-details">
+                        <h4>{item.attributes.title}</h4>
+                        <p>
                           {item.attributes.desc.length > 300
                             ? `${item.attributes.desc.substring(0, 300)}...`
                             : item.attributes.desc}
-                        </td>
-                        <td>${item.attributes.price}</td>
-                        <td>
+                        </p>
+                        <p>Price: ${item.attributes.price}</p>
+                        <p>
+                          Category:{" "}
                           {item.attributes.categories.data[0].attributes.title}
-                        </td>
-                        <td>
-                          <img
-                            src={
-                              stripeAppDevUrl +
-                              item.attributes.img.data[0].attributes.url
-                            }
-                            alt=""
-                            style={{ width: "100px" }}
-                          />
-                        </td>
-                        <td>
-                          <span
-                            onClick={() => {
-                              EditProduct(item.id);
-                            }}
-                            className="btn btn-success"
-                          >
-                            <AiFillEdit />
-                          </span>
-                          <span
-                            onClick={() => {
-                              handleRemove(item.id);
-                            }}
-                            className="btn btn-danger"
-                          >
-                            <BiSolidTrash />
-                          </span>
-                          <span
-                            onClick={() => {
-                              LoadDetail(item.id);
-                            }}
-                            className="btn btn-primary"
-                          >
-                            <CgDetailsMore />
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                        </p>
+                      </div>
+                      <div className="product-actions">
+                        <span
+                          onClick={() => {
+                            EditProduct(item.id);
+                          }}
+                          className="btn btn-success"
+                        >
+                          <AiFillEdit />
+                        </span>
+                        <span
+                          onClick={() => {
+                            handleRemove(item.id);
+                          }}
+                          className="btn btn-danger"
+                        >
+                          <BiSolidTrash />
+                        </span>
+                        <span
+                          onClick={() => {
+                            LoadDetail(item.id);
+                          }}
+                          className="btn btn-primary"
+                        >
+                          <CgDetailsMore />
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="pagination">{paginationButtons}</div>
               </div>
             </div>
           </div>
@@ -143,4 +196,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default ViewProducts;

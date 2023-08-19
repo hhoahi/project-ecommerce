@@ -10,55 +10,32 @@
   }
 
   .card-body {
-    table {
-      width: 100%;
-      border-collapse: collapse;
+    .products-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
 
-      thead {
-        tr {
-          td {
-            padding: 8px;
-            background-color: #263043;
-            color: white;
-            text-align: center;
+      .product-card {
+        width: calc(33.33% - 20px); /* 3 sản phẩm trên mỗi hàng */
+        border: 1px solid #ddd;
+        padding: 10px;
+        box-sizing: border-box;
+
+        .product-image img {
+          max-width: 100%;
+          height: auto;
+        }
+
+        .product-details {
+          margin-top: 10px;
+          h4 {
+            margin: 0;
           }
         }
-      }
 
-      tbody {
-        tr {
-          td {
-            padding: 8px;
-            text-align: left;
-
-            img {
-              width: 100px;
-            }
-
-            .btn {
-              margin-bottom: 10px;
-              width: 100%;
-              text-align: center;
-              font-size: 27px;
-              color: #263043;
-              border: none;
-              &.btn-success {
-                background-color: #ffffff;
-              }
-
-              &.btn-danger {
-                background-color: #ffffff;
-              }
-
-              &.btn-primary {
-                background-color: #ffffff;
-              }
-            }
-
-            .btn:hover {
-              color: red;
-            }
-          }
+        .product-actions {
+          margin-top: 10px;
         }
       }
     }

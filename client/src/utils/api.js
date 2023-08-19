@@ -40,13 +40,6 @@ export const getProfile = axios.create({
   },
 });
 
-export const getOrderUser = axios.create({
-  baseURL: process.env.REACT_APP_STRIPE_APP_DEV_URL,
-  headers: {
-    Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
-  },
-});
-
 export const getDataAdmin = axios.create({
   baseURL: process.env.REACT_APP_STRIPE_APP_DEV_URL,
   headers: {
@@ -54,3 +47,37 @@ export const getDataAdmin = axios.create({
   },
 });
 
+export const getOrderUser = axios.create({
+  baseURL: process.env.REACT_APP_STRIPE_APP_DEV_URL,
+  headers: {
+    Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
+  },
+});
+
+export const postCartUser = axios.create({
+  baseURL: process.env.REACT_APP_STRIPE_APP_DEV_URL,
+  headers: {
+    Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
+  },
+});
+
+export const getData = axios.create({
+  baseURL: process.env.REACT_APP_STRIPE_APP_DEV_URL,
+  headers: {
+    Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
+  },
+});
+
+export const postData = axios.create({
+  baseURL: process.env.REACT_APP_STRIPE_APP_DEV_URL,
+  headers: {
+    Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
+  },
+});
+
+export const postDataAdmin = axios.create({
+  baseURL: process.env.REACT_APP_STRIPE_APP_DEV_URL,
+  headers: {
+    Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
+  },
+});

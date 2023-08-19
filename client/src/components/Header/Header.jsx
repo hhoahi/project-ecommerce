@@ -20,10 +20,9 @@ const Header = () => {
   const [showCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-  const { cartCount, isOpen, setIsOpen } = useContext(Context);
+  const { cartCount, isOpen, setIsOpen,isLogin,setIsLogin } = useContext(Context);
 
   const [scrolled, setScrolled] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
 
   const navigate = useNavigate();
   const options = [

@@ -1,0 +1,76 @@
+.title-main {
+  text-align: center;
+  margin-top: 20px;
+}
+.btn-actions {
+  text-align: right;
+  margin-right: 12%;
+}
+.user-grid {
+  display: grid;
+  max-width: 920px;
+  grid-template-columns: repeat(3, 1fr); /* Tạo 3 cột có chiều rộng bằng nhau */
+  gap: 20px; /* Khoảng cách giữa các cột */
+  margin: 0 auto;
+}
+
+.user-card {
+  background-color: #263043;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 10px;
+  p {
+    text-align: left;
+  }
+  .user-avatar {
+    width: 90px;
+    height: 90px;
+    border: 1px solid #ccc;
+    border-radius: 50%; /* Hình tròn */
+    margin: 0 auto; /* Canh giữa */
+    margin-bottom: 10px;
+    display: block;
+    object-fit: cover; /* Đảm bảo hình ảnh không bị biến dạng */
+  }
+  .info-user {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 8px;
+    p:hover {
+      font-weight: 600;
+    }
+  }
+}
+
+.user-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Hiển thị nút chọn bên phải */
+  margin-bottom: 10px; /* Khoảng cách dưới của hộp kiểm */
+  margin-left: 10px;
+
+  .edit-button {
+    width: 25px;
+    height: 25px;
+    color: #fff;
+  }
+  input[type="checkbox"] {
+    margin-left: 10px; // Khoảng cách từ biểu tượng sang hộp
+    width: 18px;
+    height: 18px;
+  }
+}
+
+span {
+  background-color: none;
+  .admin-icon {
+    margin: 5px;
+    width: 25px;
+    height: 25px;
+  }
+  .admin-icon:hover {
+    color: red;
+  }
+}

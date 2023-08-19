@@ -5,7 +5,6 @@ import { Context } from "../../../utils/context";
 
 import { RiAccountCircleLine, RiSettings3Line } from "react-icons/ri";
 import { BsBagHeart, BsEye } from "react-icons/bs";
-import { SlLocationPin } from "react-icons/sl";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 
 function EditProfile() {
@@ -111,6 +110,7 @@ function EditProfile() {
 
     fetchUserData();
   }, [userId]);
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString();
@@ -154,7 +154,7 @@ function EditProfile() {
                     My Orders
                   </a>
                 </li>
-                <li
+                {/* <li
                   className={selectedStore === "tab_3" ? "active" : ""}
                   onClick={handleStoreClick("tab_3")}
                 >
@@ -162,7 +162,7 @@ function EditProfile() {
                     <SlLocationPin />
                     Address
                   </a>
-                </li>
+                </li> */}
                 <li
                   className={selectedStore === "tab_4" ? "active" : ""}
                   onClick={handleStoreClick("tab_4")}

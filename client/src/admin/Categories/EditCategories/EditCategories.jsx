@@ -4,42 +4,24 @@ import { getDataAdmin } from "../../../utils/api";
 import Sidebar from "../../Sidebar/Sidebar";
 import { useParams } from "react-router-dom";
 
-const Edit = () => {
+function EditCategories() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [categories, setCategories] = useState([]);
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
-  const [product, setProduct] = useState({
+  const [categories, setCategories] = useState({
     title: "",
     desc: "",
-    price: 0,
-    categories: "",
   });
 
   const token = JSON.parse(localStorage.getItem("user"));
   const jwt = token?.jwt;
 
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await getDataAdmin.get("/api/categories");
-        if (response.status === 200) {
-          setCategories(response.data.data);
-        }
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
-    fetchCategories();
-  }, []);
-
   useEffect(() => {
     getDataAdmin
-      .get(`http://localhost:1337/api/products/${id}`)
+      .get(`http://localhost:1337/api/categories/${id}`)
       .then((response) => {
-        setProduct(response.data);
+        setCategories(response.data);
       })
       .catch((error) => {
         console.error(error);
@@ -48,12 +30,12 @@ const Edit = () => {
 
   const handleProductChange = (e) => {
     const { name, value } = e.target;
-    setProduct((prevProduct) => ({
-      ...prevProduct,
+    setCategories((prevCategories) => ({
+      ...prevCategories,
       data: {
-        ...prevProduct.data,
+        ...prevCategories.data,
         attributes: {
-          ...prevProduct.data.attributes,
+          ...prevCategories.data.attributes,
           [name]: value,
         },
       },
@@ -75,13 +57,11 @@ const Edit = () => {
       });
 
       const response = await getDataAdmin.put(
-        `http://localhost:1337/api/products/${id}`,
+        `http://localhost:1337/api/categories/${id}`,
         {
           data: {
-            title: product.data.attributes.title,
-            desc: product.data.attributes.desc,
-            price: product.data.attributes.price,
-            categories: product.data.attributes.categories,
+            title: categories.data.attributes.title,
+            desc: categories.data.attributes.desc,
             img: uploadResponse.data[0].id,
           },
         },
@@ -94,7 +74,7 @@ const Edit = () => {
         }
       );
       if (response.status >= 200 && response.status < 300) {
-        navigate("/products");
+        navigate("/categories");
       }
     } catch (error) {
       console.error("Error:", error.message);
@@ -106,12 +86,11 @@ const Edit = () => {
     setImageUrl(URL.createObjectURL(e.target.files[0]));
   };
 
-  console.log(product);
   return (
     <div className="grid-container">
       <Sidebar />
       <div className="main-container">
-        {product && product.data && product.data.attributes && (
+        {categories && categories.data && categories.data.attributes && (
           <form className="container-create" onSubmit={handleSubmit}>
             <h3>Edit Product</h3>
             <div className="card-body">
@@ -122,51 +101,24 @@ const Edit = () => {
                 className="form-control"
               ></input>
 
-              <label>Product name</label>
+              <label>Categories title</label>
               <input
                 type="text"
                 name="title"
-                value={product.data.attributes.title}
+                value={categories.data.attributes.title}
                 onChange={handleProductChange}
                 required
               />
 
-              <label>Product description</label>
+              <label>Categories description</label>
               <input
                 type="text"
                 name="desc"
-                value={product.data.attributes.desc}
+                value={categories.data.attributes.desc}
                 onChange={handleProductChange}
                 required
               />
-
-              <label>Price</label>
-              <input
-                type="number"
-                name="price"
-                value={product.data.attributes.price}
-                onChange={handleProductChange}
-                required
-              />
-
-              <label>
-                Choose a category: {""}
-                <select
-                  name="categories"
-                  value={product.categories}
-                  onChange={handleProductChange}
-                  required
-                  className="categories-select"
-                >
-                  {categories.map((category) => (
-                    <option key={category.id} value={category.id}>
-                      {category.attributes.title}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <label>Upload product images</label>
+              <label>Upload categories images</label>
               <input
                 type="file"
                 onChange={handleFileChange}
@@ -186,6 +138,6 @@ const Edit = () => {
       </div>
     </div>
   );
-};
+}
 
-export default Edit;
+export default EditCategories;
