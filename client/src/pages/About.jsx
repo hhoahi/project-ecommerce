@@ -10,7 +10,7 @@ import "../styles/About.scss";
 
 function About() {
   return (
-    <div className="main-content">
+    <div className="main-home">
       <div className="layout">
         <div className="banner">
           <p>Home/Introduction</p>
@@ -56,6 +56,7 @@ function About() {
               <Col lg="12" className="mb-4 text-center">
                 <h6 className="section__subtitle">Our clients says</h6>
                 <h2 className="section__title">Testimonials</h2>
+
                 <Testimonial />
               </Col>
             </Row>

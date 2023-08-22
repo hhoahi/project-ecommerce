@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MdClose } from "react-icons/md";
 import { BsCartX } from "react-icons/bs";
 
@@ -12,17 +12,23 @@ import { getUser } from "../../../utils/helpers";
 import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = ({ setShowCart }) => {
-  const { cartItems, cartSubTotal } = useContext(Context);
-
+  const { cartSubTotal } = useContext(Context);
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   const stripePromise = loadStripe(
     process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
   );
 
   const userProfile = getUser();
   const userId = userProfile?.id;
-  console.log(userId);
+  console.log(cartItems);
 
   const handlePayment = async () => {
+    const userProfile = getUser();
+    if (!userProfile) {
+      history("/login");
+      setShowCart(false);
+      return;
+    }
     try {
       const stripe = await stripePromise;
       const res = await makePaymentRequest.post("/api/orders", {

@@ -20,6 +20,9 @@
     },
     "userId": {
       "type": "biginteger"
+    },
+    "paymentStatus": {
+      "type": "boolean"
     }
   }
 }

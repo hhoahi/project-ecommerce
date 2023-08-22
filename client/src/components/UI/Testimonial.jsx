@@ -38,7 +38,7 @@ function Testimonial() {
   };
 
   return (
-    <Slider {...settings}>
+    <Slider {...settings} className="backgroud-row">
       <div className="testimonial py-4 px-3">
         <p className="section__description">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus magni

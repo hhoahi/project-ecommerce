@@ -48,7 +48,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
         </li>
         <li className="sidebar-list-item">
           <Link to="/api/categories/">
-            <BsMenuButtonWideFill className="icon" /> Browse Categories
+            <BsMenuButtonWideFill className="icon" /> Add Categories
           </Link>
         </li>
         <li className="sidebar-list-item">

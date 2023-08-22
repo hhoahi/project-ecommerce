@@ -7,7 +7,7 @@ import { CgDetailsMore } from "react-icons/cg";
 import "./ViewProducts.scss";
 import { getDataAdmin } from "../../../utils/api";
 
-const ITEMS_PER_PAGE = 9;
+const ITEMS_PER_PAGE = 6;
 const stripeAppDevUrl = process.env.REACT_APP_STRIPE_APP_DEV_URL;
 
 function ViewProducts() {
@@ -146,11 +146,12 @@ function ViewProducts() {
                       </div>
                       <div className="product-details">
                         <h4>{item.attributes.title}</h4>
-                        <p>
-                          {item.attributes.desc.length > 300
-                            ? `${item.attributes.desc.substring(0, 300)}...`
+                        <p className="desc">
+                          {item.attributes.desc.length > 100
+                            ? `${item.attributes.desc.substring(0, 100)}...`
                             : item.attributes.desc}
                         </p>
+
                         <p>Price: ${item.attributes.price}</p>
                         <p>
                           Category:{" "}

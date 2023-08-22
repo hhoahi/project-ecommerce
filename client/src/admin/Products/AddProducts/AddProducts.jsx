@@ -86,9 +86,13 @@ function AddProducts({ setShowUserPage }) {
         console.log("Success");
       }
       setShowSuccessMessage(true);
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         setShowSuccessMessage(false); // Tắt thông báo sau 2 giây
       }, 3000);
+      return () => {
+        // 👇️ clear timeout when the component unmounts
+        clearTimeout(timeout);
+      };
     } catch (error) {
       console.error("Error:", error.message);
     }

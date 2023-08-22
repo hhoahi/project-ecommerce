@@ -20,13 +20,14 @@ const Header = () => {
   const [showCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-  const { cartCount, isOpen, setIsOpen,isLogin,setIsLogin } = useContext(Context);
+  const { cartCount, isOpen, setIsOpen, isLogin, setIsLogin } =
+    useContext(Context);
 
   const [scrolled, setScrolled] = useState(false);
 
   const navigate = useNavigate();
   const options = [
-    { label: "CATEGORIES", value: "/categories" },
+    { label: "CATEGORIES", value: "/category" },
     { label: "T-SHIRT", value: "/category/1" },
     { label: "SUIT", value: "/category/2" },
     { label: "SHIRT", value: "/category/3" },

@@ -6,6 +6,7 @@ const params = {
   },
 };
 
+//thực hiện yêu cầu GET đến một API với URL được cung cấp và các thông tin tiêu đề từ params
 export const fetchDataFromApi = async (url) => {
   try {
     const { data } = await axios.get(
@@ -20,6 +21,13 @@ export const fetchDataFromApi = async (url) => {
 };
 
 export const makePaymentRequest = axios.create({
+  baseURL: process.env.REACT_APP_STRIPE_APP_DEV_URL,
+  headers: {
+    Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
+  },
+});
+
+export const saveDataToStrapi = axios.create({
   baseURL: process.env.REACT_APP_STRIPE_APP_DEV_URL,
   headers: {
     Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,

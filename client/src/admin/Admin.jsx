@@ -9,7 +9,8 @@ function Admin() {
   const OpenSidebar = () => {
     setOpenSidebarToggle(!openSidebarToggle);
   };
-  return (
+  const role = JSON.parse(localStorage.getItem("user"))?.user.username;
+  return role=== "admin" && (
     <div className="grid-container">
       <Sidebar
         openSidebarToggle={openSidebarToggle}

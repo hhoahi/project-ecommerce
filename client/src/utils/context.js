@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { createContext, useState } from "react";
 import { getToken } from "./helpers";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Strapi from "strapi-sdk-js";
 
 export const Context = createContext();
@@ -16,6 +16,7 @@ const AppContext = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
   const [cartSubTotal, setCartSubTotal] = useState(0);
   const location = useLocation();
+  const navigate = useNavigate();
   const [productAdmin, setProductAdmin] = useState([]);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -37,28 +38,43 @@ const AppContext = ({ children }) => {
     window.scrollTo(0, 0);
   }, [location]);
 
-  useEffect(() => {
+  //tính toán tổng giỏ hàng
+  const calculateTotals = () => {
     let count = 0;
-    cartItems.map((item) => (count += item.attributes.quantity));
-    setCartCount(count);
-
     let subTotal = 0;
-    cartItems.map(
-      (item) => (subTotal += item.attributes.price * item.attributes.quantity)
-    );
+
+    cartItems.forEach((item) => {
+      count += item.attributes.quantity;
+      subTotal += item.attributes.price * item.attributes.quantity;
+    });
+
+    setCartCount(count);
     setCartSubTotal(subTotal);
+  };
+
+  //tính toán lại số lượng hàng và tổng giá trị của giỏ hàng mỗi khi danh sách giỏ hàng thay đổi
+  useEffect(() => {
+    calculateTotals();
   }, [cartItems]);
 
+  //thực hiện các thao tác thêm, xóa và thay đổi số lượng sản phẩm trong giỏ hàng
   const handleAddToCart = (product, quantity) => {
-    let items = [...cartItems];
+    // Lấy danh sách sản phẩm trong giỏ hàng từ localStorage (nếu có)
+    let items = JSON.parse(localStorage.getItem("cartItems")) || [];
     let index = items.findIndex((p) => p.id === product.id);
     if (index !== -1) {
+      // Cập nhật số lượng sản phẩm nếu đã tồn tại
       items[index].attributes.quantity += quantity;
     } else {
+      // Thêm sản phẩm mới vào danh sách
       product.attributes.quantity = quantity;
-      items = [...items, product];
+      items.push(product);
     }
+    // Cập nhật danh sách sản phẩm trong localStorage
+    localStorage.setItem("cartItems", JSON.stringify(items));
+    // Cập nhật state (nếu bạn đang sử dụng React hoặc framework tương tự)
     setCartItems(items);
+    calculateTotals();
   };
 
   const handleRemoveFromCart = (product) => {
@@ -79,7 +95,19 @@ const AppContext = ({ children }) => {
     setCartItems(items);
   };
 
+  //điều hướng khi navigate thay đổi, đoạn mã bên trong useEffect sẽ được thực thi.
+  useEffect(() => {
+    const role = JSON.parse(localStorage.getItem("user"))?.user.username;
+    //kiểm tra vai trò của người dùng có khác "admin" và đồng thời địa chỉ URL hiện tại có phải "/admin" không
+    if (role !== "admin" && window.location.pathname === "/admin") {
+      navigate("/");
+      console.log(true);
+    }
+  }, [navigate]);
+
   return (
+    //Context Provider thành phần chính để cung cấp Context cho toàn bộ ứng dụng. 
+    //Các giá trị và hàm được đặt trong Context.Provider để có thể truy cập từ bất kỳ thành phần con nào trong ứng dụng
     <Context.Provider
       value={{
         categories,
@@ -102,7 +130,7 @@ const AppContext = ({ children }) => {
         productAdmin,
         setProductAdmin,
         isLogin,
-        setIsLogin
+        setIsLogin,
       }}
     >
       {children}

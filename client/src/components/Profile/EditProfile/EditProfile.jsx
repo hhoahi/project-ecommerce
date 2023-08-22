@@ -44,7 +44,7 @@ function EditProfile() {
     };
 
     fetchUserData();
-  }, []);
+  }, [userId, setUserData]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,9 +55,13 @@ function EditProfile() {
       }); // Thay đổi URL tương ứng với API của Strapi
       console.log("Thông tin người dùng đã được cập nhật:", response.data);
       setShowSuccessMessage(true);
-      setTimeout(() => {
+      const timeout =  setTimeout(() => {
         setShowSuccessMessage(false); // Tắt thông báo sau 2 giây
       }, 3000);
+      return () => {
+        // 👇️ clear timeout when the component unmounts
+        clearTimeout(timeout);
+      };
 
       // Thực hiện các hành động sau khi cập nhật thành công
     } catch (error) {
@@ -83,10 +87,13 @@ function EditProfile() {
       }); // Thay đổi URL tương ứng với API của Strapi
       console.log("Thông tin người dùng đã được cập nhật:", response.data);
       setShowSuccessMessage(true);
-      setTimeout(() => {
+    const timeout =  setTimeout(() => {
         setShowSuccessMessage(false); // Tắt thông báo sau 5 giây
       }, 3000);
-
+      return () => {
+        // 👇️ clear timeout when the component unmounts
+        clearTimeout(timeout);
+      };
       // Thực hiện các hành động sau khi cập nhật thành công
     } catch (error) {
       console.error("Lỗi khi cập nhật thông tin người dùng:", error);

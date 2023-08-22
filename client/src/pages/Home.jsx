@@ -39,12 +39,12 @@ const Home = () => {
   }, [getProducts, getCategories, getProductsAdmin]);
 
   return (
-    <div>
+    <div className="background-layout">
       <div className="hero__slider-section">
         <HeroSlider />
       </div>
 
-      <div className="main-content">
+      <div className="main-home">
         <div className="layout">
           <div className="layout-category">
             <Category categories={categories} />
