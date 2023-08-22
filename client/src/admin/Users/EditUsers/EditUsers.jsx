@@ -19,17 +19,19 @@ export const EditUser = () => {
     }
   };
 
+  console.log(user);
+
   useEffect(() => {
     fetchUserData();
   }, [id]);
 
   const updateUser = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const url = `http://localhost:1337/api/users/${id}`;
       const response = await axios.put(url, user);
       if (response) {
-        setUser(null)
+        setUser(null);
         navigate("/users");
       }
       // Cập nhật thành công, chuyển đến trang "users"

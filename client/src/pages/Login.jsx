@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { storeUser } from "../utils/helpers";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/store/blog_banner_1_grande.webp";
-
 import "../styles/Login.scss";
 import { getProfile } from "../utils/api";
 

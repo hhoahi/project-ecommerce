@@ -20,7 +20,6 @@ const Edit = () => {
   const token = JSON.parse(localStorage.getItem("user"));
   const jwt = token?.jwt;
 
-
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -60,20 +59,66 @@ const Edit = () => {
     }));
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData();
+  //   formData.append("files", image);
+
+  //   try {
+  //     const uploadResponse = await getDataAdmin.post("/api/upload", formData, {
+  //       mode: "no-cors",
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //         Authorization: `Bearer ${jwt}`,
+  //       },
+  //     });
+
+  //     const response = await getDataAdmin.put(
+  //       `http://localhost:1337/api/products/${id}`,
+  //       {
+  //         data: {
+  //           title: product.data.attributes.title,
+  //           desc: product.data.attributes.desc,
+  //           price: product.data.attributes.price,
+  //           categories: product.data.attributes.categories,
+  //           // img: uploadResponse.data[0].id,
+  //           img: image
+  //             ? uploadResponse.data[0].id
+  //             : product.data.attributes.img,
+  //         },
+  //       },
+  //       {
+  //         mode: "no-cors",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${jwt}`,
+  //         },
+  //       }
+  //     );
+  //     if (response.status >= 200 && response.status < 300) {
+  //       navigate("/products");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error:", error.message);
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("files", image);
-
+    if (image) {
+      formData.append("files", image);
+    }
     try {
-      const uploadResponse = await getDataAdmin.post("/api/upload", formData, {
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${jwt}`,
-        },
-      });
-
+      let uploadResponse;
+      if (image) {
+        uploadResponse = await getDataAdmin.post("/api/upload", formData, {
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${jwt}`,
+          },
+        });
+      }
       const response = await getDataAdmin.put(
         `http://localhost:1337/api/products/${id}`,
         {
@@ -82,7 +127,9 @@ const Edit = () => {
             desc: product.data.attributes.desc,
             price: product.data.attributes.price,
             categories: product.data.attributes.categories,
-            img: uploadResponse.data[0].id,
+            img: image
+              ? uploadResponse.data[0].id
+              : product.data.attributes.img,
           },
         },
         {
