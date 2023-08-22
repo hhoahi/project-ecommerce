@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import "./Products.scss";
 import Product from "./Product/Product";
+<<<<<<< HEAD
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+=======
+
+import { IoIosArrowForward } from "react-icons/io";
+
+>>>>>>> 277d0e95880894e0f21b8be39b554e2da580376a
 
 const Products = ({ products, innerPage, headingText }) => {
   const [currentPage, setCurrentPage] = useState(1);

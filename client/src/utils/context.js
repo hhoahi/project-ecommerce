@@ -16,6 +16,7 @@ const AppContext = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
   const [cartSubTotal, setCartSubTotal] = useState(0);
   const location = useLocation();
+<<<<<<< HEAD
   const [productAdmin, setProductAdmin] = useState([]);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +32,9 @@ const AppContext = ({ children }) => {
 
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?.user.id;
+=======
+  const [productAdmin, setProductAdmin] = useState([])
+>>>>>>> 277d0e95880894e0f21b8be39b554e2da580376a
 
   //cuộn đến đầu trang mỗi khi location thay đổi
   useEffect(() => {
@@ -95,6 +99,7 @@ const AppContext = ({ children }) => {
         handleAddToCart,
         handleRemoveFromCart,
         handleCartProductQuantity,
+<<<<<<< HEAD
         userData,
         setUserData,
         isOpen,
@@ -103,6 +108,10 @@ const AppContext = ({ children }) => {
         setProductAdmin,
         isLogin,
         setIsLogin
+=======
+        productAdmin,
+        setProductAdmin,
+>>>>>>> 277d0e95880894e0f21b8be39b554e2da580376a
       }}
     >
       {children}

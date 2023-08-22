@@ -21,13 +21,23 @@ import AddCategories from "./admin/Categories/AddCategories/AddCategories";
 import EditCategories from "./admin/Categories/EditCategories/EditCategories";
 
 import AppContext from "./utils/context";
+
 import Layout from "./pages/Layout";
+
+import Button from "./components/UI/Button";
+import ProductList from "./Admin/AdminProduct/ProductList";
+import Create from "./Admin/AdminProduct/Create";
+import Edit from "./Admin/AdminProduct/Edit";
+import CategoryList from "./Admin/AdminCategory/CategoryList";
+import CreateProduct from "./Admin/AdminProduct/CreateProduct";
+
 
 function App() {
   return (
     <BrowserRouter>
       <AppContext>
         <Routes>
+
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -49,6 +59,21 @@ function App() {
           <Route path="/categories/" element={<ViewCategories />} />
           <Route path="/api/categories" element={<AddCategories />} />
           <Route path="/api/categories/:id" element={<EditCategories />} />
+
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/about/" element={<About />} />
+          <Route path="/location" element={<Location />} />
+          <Route path="/categories/" element={<Categories />} />
+          <Route path="/category/:id" element={<Categogy />} />
+          <Route path="/product/:id" element={<SingleProduct />} />
+          <Route path="/productlist" element={<ProductList />} />
+          <Route path="/api/products" element={<Create />} />
+          <Route path="/api/products/:id" element={<Edit />} />
+          <Route path="/admin/category" element={<CategoryList />} />
+          <Route path="/create" element={<CreateProduct />} />
+
         </Routes>
       </AppContext>
     </BrowserRouter>

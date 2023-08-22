@@ -36,6 +36,8 @@ const Home = () => {
   useEffect(() => {
     getProducts();
     getCategories();
+
+    getProductsAdmin();
   }, [getProducts, getCategories, getProductsAdmin]);
 
   return (

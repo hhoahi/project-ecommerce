@@ -128,6 +128,7 @@ const Header = () => {
                 <AiOutlineUser className="icon-profile" onClick={handleClick} />
                 {isOpen && (
                   <div className="dropdown-content">
+
                     <div onClick={() => navigate("/login")}>
                       <span className="btn-dropdown" onClick={handleLogin}>
                         Sign In
@@ -136,6 +137,12 @@ const Header = () => {
                     <div onClick={() => navigate("/register")}>
                       <span className="btn-dropdown">Register</span>
                     </div>
+
+                    <a href="/login" onClick={handleLogin}>
+                      Sign In
+                    </a>
+                    <a href="/productlist">Admin</a>
+
                   </div>
                 )}
               </li>

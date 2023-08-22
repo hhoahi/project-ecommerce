@@ -26,13 +26,18 @@ export const makePaymentRequest = axios.create({
   },
 });
 
+<<<<<<< HEAD
 export const getUserProfile = axios.create({
+=======
+export const fetchData = axios.create({
+>>>>>>> 277d0e95880894e0f21b8be39b554e2da580376a
   baseURL: process.env.REACT_APP_STRIPE_APP_DEV_URL,
   headers: {
     Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
   },
 });
 
+<<<<<<< HEAD
 export const getProfile = axios.create({
   baseURL: process.env.REACT_APP_STRIPE_APP_DEV_URL,
   headers: {
@@ -81,3 +86,5 @@ export const postDataAdmin = axios.create({
     Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
   },
 });
+=======
+>>>>>>> 277d0e95880894e0f21b8be39b554e2da580376a
