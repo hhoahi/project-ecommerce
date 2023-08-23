@@ -39,7 +39,7 @@ function User() {
   };
 
   const handleEditUser = (userId) => {
-    navigate(`/api/users/${userId}`);
+    navigate(`/admin/users/edit/${userId}`);
   };
 
   const handleDeleteSelectedUsers = async () => {
@@ -81,7 +81,6 @@ function User() {
 
   return (
     <div className="grid-container">
-      <Sidebar />
       <div className="main-container">
         <div className="user-body">
           <div className="title-main">

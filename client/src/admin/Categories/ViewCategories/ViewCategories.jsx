@@ -13,7 +13,7 @@ function ViewCategories() {
   const navigate = useNavigate();
 
   const EditProduct = (id) => {
-    navigate("/api/categories/" + id);
+    navigate("/admin/categories/edit/" + id);
   };
 
   const handleRemove = async (categoriesId) => {
@@ -71,7 +71,6 @@ function ViewCategories() {
   console.log(empdata);
   return (
     <div className="grid-container">
-      <Sidebar />
       <div className="main-container">
         <div className="main-title">
           <div className="container" style={{ textAlign: "center" }}>

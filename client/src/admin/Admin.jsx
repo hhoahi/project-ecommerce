@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import "./Admin.scss";
 import Sidebar from "./Sidebar/Sidebar";
 import Dashboard from "./Dashboard/Dashboard";
-import { useNavigate } from "react-router-dom";
-import { getCurrentUser } from "../utils/api";
+import { Outlet, useNavigate } from "react-router-dom";
 
 function Admin() {
+  const [isAdminRole, setIAdminRole] = useState();
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
   const navigate = useNavigate();
 
@@ -14,27 +14,27 @@ function Admin() {
   };
 
   useEffect(() => {
-    const role = JSON.parse(localStorage.getItem("user"))?.user.username;
-    if (role !== "admin" && window.location.pathname === "/admin") {
+    const isAdmin = JSON.parse(localStorage.getItem("isAdmin"));
+    const isAdminRole = isAdmin === true;
+    setIAdminRole(isAdminRole);
+    console.log(isAdminRole);
+    if (!isAdminRole) {
       navigate("/");
-      console.log(true);
     }
-    // const fetchData = async () => {
-    //   const res = await getCurrentUser();
-    //   console.log(res.data);
-    // };
-    // fetchData();
-  }, []);
+  }, [navigate]);
 
-  const role = JSON.parse(localStorage.getItem("user"))?.user.username;
   return (
-    role === "admin" && (
-      <div className="grid-container">
-        <Sidebar
-          openSidebarToggle={openSidebarToggle}
-          OpenSidebar={OpenSidebar}
-        />
-        <Dashboard />
+    isAdminRole === true && (
+      <div className="admin-page">
+        <div className="slider-bar">
+          <Sidebar
+            openSidebarToggle={openSidebarToggle}
+            OpenSidebar={OpenSidebar}
+          />
+        </div>
+        <div className="admin-body">
+          <Outlet />
+        </div>
       </div>
     )
   );

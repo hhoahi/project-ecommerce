@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getDataAdmin } from "../../../utils/api";
-import Sidebar from "../../Sidebar/Sidebar";
 import { useParams } from "react-router-dom";
 
 const Edit = () => {
@@ -98,7 +97,7 @@ const Edit = () => {
         }
       );
       if (response.status >= 200 && response.status < 300) {
-        navigate("/products");
+        navigate("/admin/products");
       }
     } catch (error) {
       console.error("Error:", error.message);
@@ -112,8 +111,7 @@ const Edit = () => {
 
   console.log(product);
   return (
-    <div className="grid-container">
-      <Sidebar />
+    <div className="grid-container-cate">
       <div className="main-container">
         {product && product.data && product.data.attributes && (
           <form className="container-create" onSubmit={handleSubmit}>

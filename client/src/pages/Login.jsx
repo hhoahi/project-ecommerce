@@ -36,6 +36,7 @@ export const Login = () => {
           );
 
           if (data.role && data.role.type === "admin") {
+            localStorage.setItem("isAdmin", true);
             navigate("/admin");
           } else {
             navigate("/");

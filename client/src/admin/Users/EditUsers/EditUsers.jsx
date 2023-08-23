@@ -24,13 +24,13 @@ export const EditUser = () => {
   }, [id]);
 
   const updateUser = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const url = `http://localhost:1337/api/users/${id}`;
       const response = await axios.put(url, user);
       if (response) {
-        setUser(null)
-        navigate("/users");
+        setUser(null);
+        navigate("/admin/users");
       }
       // Cập nhật thành công, chuyển đến trang "users"
     } catch (error) {
@@ -48,7 +48,6 @@ export const EditUser = () => {
 
   return (
     <div className="grid-container">
-      <Sidebar />
       <div className="main-user">
         <form className="container-user" onSubmit={updateUser}>
           <h3>Edit User</h3>

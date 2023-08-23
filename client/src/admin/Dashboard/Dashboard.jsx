@@ -87,61 +87,63 @@ function Home() {
         <h3>STATISTICAL</h3>
       </div>
 
-      <div className="main-cards">
-        <div className="card">
-          {isLoading ? (
-            <p>Loading products...</p>
-          ) : (
-            <div>
-              <div className="card-inner">
-                <h3>PRODUCTS</h3>
-                <BsFillArchiveFill className="card_icon" />
+      <div className="main-home-cards">
+        <div className="main-cards">
+          <div className="card">
+            {isLoading ? (
+              <p>Loading products...</p>
+            ) : (
+              <div>
+                <div className="card-inner">
+                  <h3>PRODUCTS</h3>
+                  <BsFillArchiveFill className="card_icon" />
+                </div>
+                <h1>{products?.data?.length}</h1>
               </div>
-              <h1>{products?.data?.length}</h1>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
 
-        <div className="card">
-          {isLoading ? (
-            <p>Loading categories..</p>
-          ) : (
-            <div>
-              <div className="card-inner">
-                <h3>CATEGORIES</h3>
-                <BsFillGrid3X3GapFill className="card_icon" />
+          <div className="card">
+            {isLoading ? (
+              <p>Loading categories..</p>
+            ) : (
+              <div>
+                <div className="card-inner">
+                  <h3>CATEGORIES</h3>
+                  <BsFillGrid3X3GapFill className="card_icon" />
+                </div>
+                <h1>{categories?.data?.length}</h1>
               </div>
-              <h1>{categories?.data?.length}</h1>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
 
-        <div className="card">
-          {isLoading ? (
-            <p>Loading order..</p>
-          ) : (
-            <div>
-              <div className="card-inner">
-                <h3>ORDER</h3>
-                <BsPeopleFill className="card_icon" />
+          <div className="card">
+            {isLoading ? (
+              <p>Loading order..</p>
+            ) : (
+              <div>
+                <div className="card-inner">
+                  <h3>ORDER</h3>
+                  <BsPeopleFill className="card_icon" />
+                </div>
+                <h1>{orders.data?.length}</h1>
               </div>
-              <h1>{orders.data?.length}</h1>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
 
-        <div className="card">
-          {isLoading ? (
-            <p>Loading revenue..</p>
-          ) : (
-            <div>
-              <div className="card-inner">
-                <h3>REVENUE</h3>
-                <BsCurrencyDollar className="card_icon" />
+          <div className="card">
+            {isLoading ? (
+              <p>Loading revenue..</p>
+            ) : (
+              <div>
+                <div className="card-inner">
+                  <h3>REVENUE</h3>
+                  <BsCurrencyDollar className="card_icon" />
+                </div>
+                <h1>${calculateTotalRevenue()}</h1>
               </div>
-              <h1>${calculateTotalRevenue()}</h1>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
 

@@ -42,27 +42,27 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
           </Link>
         </li>
         <li className="sidebar-list-item">
-          <Link to="/categories/">
+          <Link to="/admin/categories/">
             <BsFillGrid3X3GapFill className="icon" /> Categories
           </Link>
         </li>
         <li className="sidebar-list-item">
-          <Link to="/api/categories/">
+          <Link to="/admin/categories/new-category">
             <BsMenuButtonWideFill className="icon" /> Add Categories
           </Link>
         </li>
         <li className="sidebar-list-item">
-          <Link to="/products/">
+          <Link to="/admin/products/">
             <BsFillArchiveFill className="icon" /> View Products
           </Link>
         </li>
         <li className="sidebar-list-item">
-          <Link to="/api/products">
+          <Link to="/admin/products/new-product">
             <BsListCheck className="icon" /> Add Products
           </Link>
         </li>
         <li className="sidebar-list-item">
-          <Link to="/users/">
+          <Link to="/admin/users/">
             <BsPeopleFill className="icon" /> User Management
           </Link>
         </li>

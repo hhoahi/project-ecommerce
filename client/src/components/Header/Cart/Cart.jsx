@@ -39,6 +39,8 @@ const Cart = ({ setShowCart }) => {
         status: "Processing",
       });
 
+      localStorage.removeItem("cartItems");
+
       await stripe.redirectToCheckout({
         sessionId: res.data.stripeSession.id,
       });

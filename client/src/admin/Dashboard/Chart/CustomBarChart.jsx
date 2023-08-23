@@ -49,7 +49,7 @@ function CustomBarChart(props) {
   return (
     <div>
       <BarChart
-        width={650}
+        width={550}
         height={400}
         data={monthlyDataArray}
         margin={{

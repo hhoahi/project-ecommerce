@@ -58,7 +58,6 @@ const Search = ({ setShowSearch }) => {
                     />
                   )}
               </div>
-
               <div className="prod-details">
                 <span className="name">{item.attributes.title}</span>
                 <span className="desc">{item.attributes.desc}</span>

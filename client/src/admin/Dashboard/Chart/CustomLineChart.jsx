@@ -49,7 +49,7 @@ function CustomLineChart(props) {
   return (
     <div>
       <LineChart
-        width={620}
+        width={520}
         height={400}
         data={monthlyDataArray}
         margin={{

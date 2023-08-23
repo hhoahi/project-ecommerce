@@ -46,11 +46,11 @@ function ViewProducts() {
   }, []);
 
   const EditProduct = (id) => {
-    navigate("/api/products/" + id);
+    navigate("/admin/products/edit/" + id);
   };
 
   const LoadDetail = (id) => {
-    navigate("/product/" + id);
+    navigate("/admin/products/edit/" + id);
   };
 
   const handleRemove = async (productId) => {
@@ -108,7 +108,6 @@ function ViewProducts() {
 
   return (
     <div className="grid-container">
-      <Sidebar />
       <div className="main-container">
         <div className="main-title">
           <div className="container" style={{ textAlign: "center" }}>

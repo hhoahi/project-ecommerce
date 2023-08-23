@@ -105,7 +105,6 @@ function AddProducts({ setShowUserPage }) {
 
   return (
     <div className="grid-container">
-      <Sidebar />
       <div className="main-content">
         <form className="container-create" onSubmit={handleSubmit}>
           <h3>Add Products</h3>

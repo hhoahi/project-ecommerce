@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getDataAdmin } from "../../../utils/api";
-import Sidebar from "../../Sidebar/Sidebar";
 import { useParams } from "react-router-dom";
 
 function EditCategories() {
@@ -45,16 +44,21 @@ function EditCategories() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("files", image);
+    if (image) {
+      formData.append("files", image);
+    }
 
     try {
-      const uploadResponse = await getDataAdmin.post("/api/upload", formData, {
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${jwt}`,
-        },
-      });
+      let uploadResponse;
+      if (image) {
+        uploadResponse = await getDataAdmin.post("/api/upload", formData, {
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${jwt}`,
+          },
+        });
+      }
 
       const response = await getDataAdmin.put(
         `http://localhost:1337/api/categories/${id}`,
@@ -62,7 +66,9 @@ function EditCategories() {
           data: {
             title: categories.data.attributes.title,
             desc: categories.data.attributes.desc,
-            img: uploadResponse.data[0].id,
+            img: image
+              ? uploadResponse.data[0].id
+              : categories.data.attributes.img,
           },
         },
         {
@@ -74,7 +80,7 @@ function EditCategories() {
         }
       );
       if (response.status >= 200 && response.status < 300) {
-        navigate("/categories");
+        navigate("/admin/categories");
       }
     } catch (error) {
       console.error("Error:", error.message);
@@ -88,7 +94,6 @@ function EditCategories() {
 
   return (
     <div className="grid-container">
-      <Sidebar />
       <div className="main-container">
         {categories && categories.data && categories.data.attributes && (
           <form className="container-create" onSubmit={handleSubmit}>

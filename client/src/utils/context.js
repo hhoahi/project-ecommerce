@@ -65,14 +65,12 @@ const AppContext = ({ children }) => {
     let items = JSON.parse(localStorage.getItem("cartItems")) || [];
     let index = items.findIndex((p) => p.id === product.id);
     if (index !== -1) {
-     
       items[index].attributes.quantity += quantity;
     } else {
-    
       product.attributes.quantity = quantity;
       items.push(product);
     }
-  
+
     localStorage.setItem("cartItems", JSON.stringify(items));
     setCartItems(items);
     calculateTotals();
@@ -81,7 +79,7 @@ const AppContext = ({ children }) => {
   const handleRemoveFromCart = (product) => {
     const updatedItems = cartItems.filter((item) => item.id !== product.id);
     setCartItems(updatedItems);
-    localStorage.setItem("cartItems", JSON.stringify(updatedItems)); 
+    localStorage.setItem("cartItems", JSON.stringify(updatedItems));
   };
 
   const handleCartProductQuantity = (type, product) => {
@@ -94,22 +92,10 @@ const AppContext = ({ children }) => {
       updatedItems[index].attributes.quantity -= 1;
     }
     setCartItems(updatedItems);
-    localStorage.setItem("cartItems", JSON.stringify(updatedItems)); 
+    localStorage.setItem("cartItems", JSON.stringify(updatedItems));
   };
 
-  //điều hướng khi navigate thay đổi, đoạn mã bên trong useEffect sẽ được thực thi.
-  useEffect(() => {
-    // const role = JSON.parse(localStorage.getItem("user"))?.user.username;
-    // if (role !== "admin" && window.location.pathname === "/admin") {
-    //   navigate("/");
-    //   console.log(true);
-    // }
-    const fetchData = async () => {
-      const res = await getCurrentUser();
-      console.log(res);
-    };
-    fetchData();
-  }, []);
+  //điều hướng khi navigate thay đổi, đoạn mã bên trong useEffect sẽ được thực thi
 
   return (
     //Context Provider thành phần chính để cung cấp Context cho toàn bộ ứng dụng.

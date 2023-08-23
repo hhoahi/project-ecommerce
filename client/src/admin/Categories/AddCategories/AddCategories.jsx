@@ -85,8 +85,7 @@ function AddCategories() {
 
   return (
     <div className="grid-container">
-      <Sidebar />
-      <div className="main-content">
+      <div className="main-content-add-category">
         <form className="container-create" onSubmit={handleSubmit}>
           <h3>Add Categories</h3>
           {showSuccessMessage && (
