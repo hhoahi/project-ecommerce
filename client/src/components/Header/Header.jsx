@@ -94,7 +94,7 @@ const Header = () => {
           <ul className="left">
             <li onClick={() => navigate("/")}>Home</li>
             <li onClick={() => navigate("/about")}>About</li>
-            <li onClick={() => navigate("/blog")}>LookBook</li>
+            {/* <li onClick={() => navigate("/blog")}>LookBook</li> */}
             <li>
               <Dropdown
                 options={options}
@@ -176,14 +176,14 @@ const Header = () => {
             >
               About
             </li>
-            <li
+            {/* <li
               onClick={() => {
                 navigate("/blog");
                 setShowMenu(false);
               }}
             >
               LookBook
-            </li>
+            </li> */}
             <li>
               <Dropdown
                 options={options}

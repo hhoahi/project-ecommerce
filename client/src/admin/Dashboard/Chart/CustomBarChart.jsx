@@ -14,13 +14,12 @@ function CustomBarChart(props) {
 
   const formatMonth = (dateString) => {
     const date = new Date(dateString);
-    const month = date.getMonth() + 1; // Tăng giá trị tháng lên 1 để đảm bảo tháng từ 1 đến 12
-    return month.toString(); // Chuyển giá trị tháng thành chuỗi
+    const month = date.getMonth() + 1; 
+    return month.toString(); 
   };
   console.log(data);
 
   const monthlyData = {};
-
   data.data?.forEach((item) => {
     const createdAt = new Date(
       item.attributes.products[0].attributes.createdAt
@@ -39,6 +38,7 @@ function CustomBarChart(props) {
       };
     }
   });
+  
 
   const monthlyDataArray = Object.keys(monthlyData).map((month) => ({
     month: parseInt(month),

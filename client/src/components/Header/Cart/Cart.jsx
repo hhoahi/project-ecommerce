@@ -1,9 +1,7 @@
-import { useContext, useState } from "react";
 import { MdClose } from "react-icons/md";
 import { BsCartX } from "react-icons/bs";
 
 import CartItem from "./CartItem/CartItem";
-import { Context } from "../../../utils/context";
 import { useNavigate } from "react-router-dom";
 import "./Cart.scss";
 import { makePaymentRequest } from "../../../utils/api";
@@ -12,15 +10,19 @@ import { getUser } from "../../../utils/helpers";
 import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = ({ setShowCart }) => {
-  const { cartSubTotal } = useContext(Context);
   const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+  const subtotal = cartItems.reduce((total, item) => {
+    const itemPrice = parseFloat(item.attributes.price);
+    return total + itemPrice * item.attributes.quantity;
+  }, 0);
+
   const stripePromise = loadStripe(
     process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
   );
 
   const userProfile = getUser();
   const userId = userProfile?.id;
-  console.log(cartItems);
 
   const handlePayment = async () => {
     const userProfile = getUser();
@@ -79,7 +81,7 @@ const Cart = ({ setShowCart }) => {
             <div className="cart-footer">
               <div className="subtotal">
                 <span className="text">Subtotal:</span>
-                <span className="text total">&#x24;{cartSubTotal}</span>
+                <span className="text total">&#x24;{subtotal.toFixed(2)}</span>
               </div>
               <div className="button">
                 <button className="checkout-cta" onClick={handlePayment}>

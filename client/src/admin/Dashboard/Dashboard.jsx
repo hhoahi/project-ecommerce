@@ -6,18 +6,7 @@ import {
   BsPeopleFill,
   BsCurrencyDollar,
 } from "react-icons/bs";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  LineChart,
-  Line,
-} from "recharts";
+import { ResponsiveContainer } from "recharts";
 
 import CustomBarChart from "./Chart/CustomBarChart";
 import CustomLineChart from "./Chart/CustomLineChart";
@@ -93,7 +82,7 @@ function Home() {
   };
 
   return (
-    <main className="main-container">
+    <main className="main-home">
       <div className="main-title">
         <h3>STATISTICAL</h3>
       </div>

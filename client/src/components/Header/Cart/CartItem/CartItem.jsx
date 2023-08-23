@@ -6,10 +6,11 @@ import { Context } from "../../../../utils/context";
 const stripeAppDevUrl = process.env.REACT_APP_STRIPE_APP_DEV_URL;
 
 const CartItem = () => {
-  const {handleRemoveFromCart, handleCartProductQuantity } =
+  const { handleRemoveFromCart, handleCartProductQuantity } =
     useContext(Context);
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    console.log(cartItems)
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  console.log(cartItems);
+
   return (
     <div className="cart-products">
       {cartItems.map((item) => (

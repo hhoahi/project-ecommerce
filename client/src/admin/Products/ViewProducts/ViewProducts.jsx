@@ -17,6 +17,34 @@ function ViewProducts() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Lấy danh mục từ Strapi (ví dụ: /api/categories)
+        const responseCategories = await getDataAdmin.get("/api/categories");
+        const categoriesData = await responseCategories.data;
+
+        // Kiểm tra dữ liệu trả về có phải là mảng không
+        if (Array.isArray(categoriesData.data)) {
+          setCategories(categoriesData.data);
+        } else {
+          console.error("Categories data is not an array:", categoriesData);
+        }
+
+        // Lấy danh sách sản phẩm từ Strapi (ví dụ: /api/products?populate=*)
+        const responseProducts = await getDataAdmin.get(
+          "/api/products?populate=*"
+        );
+        const productsData = await responseProducts.data;
+        setEmpdata(productsData.data);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const EditProduct = (id) => {
     navigate("/api/products/" + id);
   };
@@ -46,34 +74,6 @@ function ViewProducts() {
       console.error("Error removing product", error);
     }
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Lấy danh mục từ Strapi (ví dụ: /api/categories)
-        const responseCategories = await getDataAdmin.get("/api/categories");
-        const categoriesData = await responseCategories.data;
-
-        // Kiểm tra dữ liệu trả về có phải là mảng không
-        if (Array.isArray(categoriesData.data)) {
-          setCategories(categoriesData.data);
-        } else {
-          console.error("Categories data is not an array:", categoriesData);
-        }
-
-        // Lấy danh sách sản phẩm từ Strapi (ví dụ: /api/products?populate=*)
-        const responseProducts = await getDataAdmin.get(
-          "/api/products?populate=*"
-        );
-        const productsData = await responseProducts.data;
-        setEmpdata(productsData.data);
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   // Tính chỉ mục bắt đầu và kết thúc của danh sách sản phẩm cho trang hiện tại
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;

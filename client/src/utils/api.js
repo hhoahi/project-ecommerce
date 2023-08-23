@@ -2,7 +2,7 @@ import axios from "axios";
 
 const params = {
   headers: {
-    Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
+    Authorization: "bearer " + JSON.parse(localStorage.getItem("user"))?.jwt,
   },
 };
 
@@ -89,3 +89,41 @@ export const postDataAdmin = axios.create({
     Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
   },
 });
+
+// export const getCurrentUser = axios.get({
+//   baseURL: process.env.REACT_APP_STRIPE_APP_DEV_URL,
+//   headers: {
+//     Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
+//   },
+// });
+
+// export const getCurrentUser = async () => {
+//   try {
+//     const data = await axios(
+//       "http://localhost:1337/api/users/me?populate=role",
+//       {
+//         headers: {
+//           Authorization:
+//             "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjkyNjk5MTMwLCJleHAiOjE2OTUyOTExMzB9.ifcF8EzhlDnTzrNtlbozr_rDgdsR-5qfEZyLjTXTkFo",
+//         },
+//       }
+//     );
+
+//     return data;
+//   } catch (err) {
+//     console.log(err);
+//     return err;
+//   }
+// };
+export const getCurrentUser = async () => {
+  try {
+    const { data } = await axios.get(
+      process.env.REACT_APP_STRIPE_APP_DEV_URL + "/api/users/me?populate=role",
+      params
+    );
+    return data;
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};
