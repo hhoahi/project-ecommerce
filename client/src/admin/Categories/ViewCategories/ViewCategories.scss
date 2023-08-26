@@ -49,6 +49,14 @@
 
           .category-actions {
             display: flex;
+            svg {
+              font-size: 23px;
+              margin-right: 5px;
+              margin-bottom: 10px;
+            }
+            svg:hover {
+              color: red;
+            }
           }
 
           .category-image img {

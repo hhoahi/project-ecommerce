@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../Sidebar/Sidebar";
 import { useNavigate } from "react-router-dom";
-import AddUsers from "./AddUsers/AddUsers";
 import { AiOutlineUserAdd, AiFillEdit } from "react-icons/ai";
 import { BiSolidTrash } from "react-icons/bi";
 import "./Users.scss";
@@ -12,7 +10,6 @@ const stripeAppDevUrl = process.env.REACT_APP_STRIPE_APP_DEV_URL;
 function User() {
   const [userData, setUserData] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
-  const [showAdd, setShowAdd] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -95,7 +92,7 @@ function User() {
               />
               <AiOutlineUserAdd
                 className="admin-icon"
-                onClick={() => setShowAdd(true)}
+                onClick={() => navigate(`/admin/users/add-user`)}
               />
             </span>
           </div>
@@ -114,7 +111,7 @@ function User() {
                     onChange={() => handleToggleUserSelection(user.id)}
                   />
                 </label>
-                <img
+                {/* <img
                   src={
                     user.img
                       ? stripeAppDevUrl + user.img.url
@@ -122,7 +119,7 @@ function User() {
                   }
                   alt={""}
                   className="user-avatar"
-                />
+                /> */}
                 <div className="info-user">
                   <p className="username">Username: {user.username}</p>
                   <p className="email">Email: {user.email}</p>
@@ -136,7 +133,6 @@ function User() {
           </div>
         </div>
       </div>
-      {showAdd && <AddUsers setShowAdd={setShowAdd} />}
     </div>
   );
 }

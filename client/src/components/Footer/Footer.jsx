@@ -90,7 +90,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-copyright text-center">
-        Copyrights © 2018 by {""}
+        Copyrights © 2023 by {""}
         <a target="_blank" href="http://adamstorevn.com">
           Adamstore
         </a>

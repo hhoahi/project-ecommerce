@@ -2,7 +2,7 @@ import axios from "axios";
 
 const params = {
   headers: {
-    Authorization: "bearer " + JSON.parse(localStorage.getItem("user"))?.jwt,
+    Authorization: "bearer " + process.env.REACT_APP_STRIPE_DEV_APP_KEY,
   },
 };
 

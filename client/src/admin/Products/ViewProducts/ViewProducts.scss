@@ -1,7 +1,6 @@
 /* ViewProducts.scss */
 .grid-container {
   grid-template-areas: "sidebar main";
-
 }
 
 .main-container {
@@ -98,7 +97,7 @@
         transition: color 0.2s ease-in-out;
 
         &:hover {
-          color: #ff6b6b;
+          color: #ff0000;
         }
       }
     }

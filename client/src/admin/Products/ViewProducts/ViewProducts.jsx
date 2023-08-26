@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../../Sidebar/Sidebar";
 import { useNavigate } from "react-router-dom";
 import { AiFillEdit } from "react-icons/ai";
 import { BiSolidTrash } from "react-icons/bi";
@@ -50,7 +49,7 @@ function ViewProducts() {
   };
 
   const LoadDetail = (id) => {
-    navigate("/admin/products/edit/" + id);
+    navigate("/admin/products/detail/" + id);
   };
 
   const handleRemove = async (productId) => {

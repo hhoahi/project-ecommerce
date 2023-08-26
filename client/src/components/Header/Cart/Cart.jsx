@@ -6,10 +6,11 @@ import { useNavigate } from "react-router-dom";
 import "./Cart.scss";
 import { makePaymentRequest } from "../../../utils/api";
 import { getUser } from "../../../utils/helpers";
-
 import { loadStripe } from "@stripe/stripe-js";
 
+
 const Cart = ({ setShowCart }) => {
+  
   const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
   const subtotal = cartItems.reduce((total, item) => {

@@ -43,12 +43,14 @@
         display: grid;
         grid-template-columns: 25% 75%;
         grid-gap: 20px;
-        width: 70%;
+        width: 60%;
         margin: 50px auto;
 
         .left {
           margin-right: 20px;
           width: 100%;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
           border: 1px solid #ccc;
           ul.tabs-head {
             list-style: none;
@@ -76,6 +78,8 @@
         .right {
           padding: 20px;
           width: 100%;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
           border: 1px solid #ccc;
           h3 {
             text-align: center;
@@ -109,6 +113,7 @@
               padding: 10px;
               margin-bottom: 10px;
               border: 1px solid #ccc;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
               border-radius: 5px;
               font-size: 16px;
             }

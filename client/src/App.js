@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, redirect } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -23,6 +23,7 @@ import EditProducts from "./admin/Products/EditProducts/EditProducts"
 
 import AppContext from "./utils/context";
 import Layout from "./pages/Layout";
+import Detail from "./admin/Products/DetailProduct/DetailProduct";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
             <Route path="products" element={<ViewProducts />} />
             <Route path="products/new-product" element={<AddProducts />} />
             <Route path="products/edit/:id" element={<EditProducts />} />
+            <Route path="products/detail/:id" element={<Detail />} />
             <Route path="categories" element={<ViewCategories />} />
             <Route path="categories/new-category" element={<AddCategories />} />
             <Route path="categories/edit/:id" element={<EditCategories />} />

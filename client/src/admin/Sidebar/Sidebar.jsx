@@ -12,6 +12,7 @@ import {
   BsMenuButtonWideFill,
   BsBoxArrowRight,
 } from "react-icons/bs";
+import { BiSolidUserPlus } from "react-icons/bi";
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
   // const [isLogin, setIsLogin] = useState(false);
@@ -64,6 +65,11 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
         <li className="sidebar-list-item">
           <Link to="/admin/users/">
             <BsPeopleFill className="icon" /> User Management
+          </Link>
+        </li>
+        <li className="sidebar-list-item">
+          <Link to="/admin/users/add-user">
+            <BiSolidUserPlus className="icon" /> Add User
           </Link>
         </li>
 

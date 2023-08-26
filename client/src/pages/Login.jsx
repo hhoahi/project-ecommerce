@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { storeUser } from "../utils/helpers";
@@ -7,13 +7,14 @@ import logo from "../assets/store/blog_banner_1_grande.webp";
 
 import "../styles/Login.scss";
 import { getCurrentUser, getProfile } from "../utils/api";
+import { Context } from "../utils/context";
 
 const initialUser = { password: "", identifier: "" };
 
 export const Login = () => {
   const [user, setUser] = useState(initialUser);
   const navigate = useNavigate();
-
+  const { setIsLogin, setIsOpen } = useContext(Context);
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setUser((currentUser) => ({
@@ -28,6 +29,9 @@ export const Login = () => {
       if (user.identifier && user.password) {
         const { data } = await axios.post(url, user);
         const userId = data.user?.id;
+        localStorage.setItem("userInfo", "true");
+        setIsLogin(true);
+        setIsOpen(false);
         storeUser(data);
         if (data.jwt) {
           setUser(initialUser);

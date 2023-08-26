@@ -6,10 +6,36 @@ import { Context } from "../../../../utils/context";
 const stripeAppDevUrl = process.env.REACT_APP_STRIPE_APP_DEV_URL;
 
 const CartItem = () => {
-  const { handleRemoveFromCart, handleCartProductQuantity } =
-    useContext(Context);
+  const { setCartItems } = useContext(Context);
   const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   console.log(cartItems);
+
+  const handleCartProductQuantity = (type, product) => {
+    const updatedItems = [...cartItems];
+    const index = updatedItems.findIndex((item) => item.id === product.id);
+    console.log(index);
+    // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng hay không
+    if (index === -1) {
+      console.error("Product not found in cart.");
+      return;
+    }
+
+    if (type === "inc") {
+      updatedItems[index].attributes.quantity += 1;
+    } else if (type === "dec") {
+      if (updatedItems[index].attributes.quantity === 1) return;
+      updatedItems[index].attributes.quantity -= 1;
+    }
+    setCartItems(updatedItems);
+    localStorage.setItem("cartItems", JSON.stringify(updatedItems));
+  };
+
+  const handleRemoveFromCart = (product) => {
+    const updatedItems = cartItems.filter((item) => item.id !== product.id);
+    setCartItems(updatedItems);
+    
+    localStorage.setItem("cartItems", JSON.stringify(updatedItems));
+  };
 
   return (
     <div className="cart-products">

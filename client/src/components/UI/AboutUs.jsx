@@ -19,9 +19,14 @@ function AboutUs() {
             <div className="about__content">
               <h2>About Us</h2>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Excepturi cupiditate animi deserunt libero nesciunt corporis
-                explicabo nobis ex quo molestiae!
+                Adam Store was born in 2012, starting at a small store on Lo Duc
+                Street. Adam Store in the early days was built by 3 young men,
+                embracing the ambition to change Vietnamese fashion trends. With
+                a passion for vests and with persistent efforts in every moment,
+                Adam Store has pioneered in the fashion industry, changed
+                customers' mindsets, and become the largest Vietnamese brand in
+                the ready-to-wear market. Prestigious brand of European clothes
+                for men.
               </p>
 
               <div className="about__counter">
@@ -31,15 +36,15 @@ function AboutUs() {
                       <CountUp start={0} end={25} duration={2} suffix="K" />
                     </span>
 
-                    <p className="counter__title">Completed Projects</p>
+                    <p className="counter__title">Products Sold</p>
                   </div>
 
                   <div className="single__counter">
                     <span className="counter">
-                      <CountUp start={0} end={12} duration={2} suffix="M" />
+                      <CountUp start={0} end={12} duration={2} suffix="K" />
                     </span>
 
-                    <p className="counter__title">Patient Around World</p>
+                    <p className="counter__title">Customers</p>
                   </div>
                 </div>
 

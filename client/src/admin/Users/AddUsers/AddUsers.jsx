@@ -1,14 +1,18 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./AddUsers.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { IoCheckmarkDoneSharp } from "react-icons/io5";
 
 const initialUser = { email: "", password: "", username: "" };
 export const AddUsers = () => {
   const [user, setUser] = useState(initialUser);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const navigate = useNavigate();
 
-  const signUp = async () => {
+  const signUp = async (event) => {
+    event.preventDefault(); // Ngăn chặn hành vi mặc định của việc gửi form
+
     try {
       const url = `http://localhost:1337/api/auth/local/register`;
       if (user.username && user.email && user.password) {
@@ -19,9 +23,15 @@ export const AddUsers = () => {
         });
         if (!!res) {
           setUser(initialUser);
-          navigate("/users");
         }
       }
+      setShowSuccessMessage(true);
+      const timeout = setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 3000);
+      return () => {
+        clearTimeout(timeout);
+      };
     } catch (error) {}
   };
 
@@ -34,10 +44,16 @@ export const AddUsers = () => {
   };
 
   return (
-    <div className="main-user">
-      <form className="container-user" onSubmit={signUp}>
+    <div className="main-add-user">
+      <form className="container-add-user" onSubmit={signUp}>
         <h3>Add User</h3>
-        <div className="card-body">
+        {showSuccessMessage && (
+          <div className="success-message">
+            Successfully Updated.
+            <IoCheckmarkDoneSharp />
+          </div>
+        )}
+        <div className="card-user-body">
           <label htmlFor="email">Full name</label>
           <input
             type="text"
@@ -55,7 +71,7 @@ export const AddUsers = () => {
             onChange={handleUserChange}
             placeholder="Enter your email"
           />
-          <label htmlFor="email">Passsword</label>
+          <label htmlFor="email">Password</label>
           <input
             type="password"
             name="password"
@@ -63,7 +79,7 @@ export const AddUsers = () => {
             onChange={handleUserChange}
             placeholder="Enter password"
           />
-          <button color="primary" onClick={signUp}>
+          <button type="submit" color="primary">
             Save Add
           </button>
         </div>

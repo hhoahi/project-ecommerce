@@ -1,14 +1,17 @@
-.main-content {
+.main-edit-user {
+  grid-area: main;
   padding: 0px 20px;
+  z-index: 999;
 }
-.container-create {
-  background-color: #fff;
+
+.container-edit-user {
   width: 100%;
   padding: 30px;
   margin: 20px auto;
-  max-width: 600px;
+  max-width: 500px;
+  background-color: #ffffff;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
   h3 {
@@ -27,10 +30,10 @@
     text-align: center;
   }
 
-  .card-body {
+  .card-edit-body {
     label {
       display: block;
-      // margin-bottom: 8px;
+      margin-bottom: 8px;
       font-weight: bold;
       .categories-select {
         border: 1px solid #ccc;
@@ -44,7 +47,7 @@
     input {
       width: 100%;
       padding: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 16px;
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 16px;
@@ -83,7 +86,6 @@
       justify-content: space-around;
       align-items: center;
       height: 150px;
-      border-radius: 8px;
       img {
         max-width: 100%;
         max-height: 100%;

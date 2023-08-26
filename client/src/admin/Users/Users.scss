@@ -1,10 +1,9 @@
 .title-main {
   text-align: center;
-  margin-top: 20px;
 }
 .btn-actions {
   text-align: right;
-  margin-right: 12%;
+  margin-right: 8%;
 }
 .user-grid {
   display: grid;
@@ -63,7 +62,7 @@
   }
 }
 
-span {
+.user-actions {
   background-color: none;
   .admin-icon {
     margin: 5px;

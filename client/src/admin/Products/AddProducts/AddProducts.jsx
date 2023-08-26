@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { getDataAdmin } from "../../../utils/api";
-import Sidebar from "../../Sidebar/Sidebar";
 import "./AddProducts.scss";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 

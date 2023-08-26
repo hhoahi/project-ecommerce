@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import Sidebar from "../../Sidebar/Sidebar";
+import "./EditUses.scss";
 
 export const EditUser = () => {
   const [user, setUser] = useState({});
@@ -48,10 +48,10 @@ export const EditUser = () => {
 
   return (
     <div className="grid-container">
-      <div className="main-user">
-        <form className="container-user" onSubmit={updateUser}>
+      <div className="main-edit-user">
+        <form className="container-edit-user" onSubmit={updateUser}>
           <h3>Edit User</h3>
-          <div className="card-body">
+          <div className="card-edit-body">
             <label htmlFor="username">Full Name</label>
             <input
               type="text"

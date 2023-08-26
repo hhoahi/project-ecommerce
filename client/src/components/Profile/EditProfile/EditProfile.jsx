@@ -4,7 +4,7 @@ import { getUserProfile, getProfile, getOrderUser } from "../../../utils/api";
 import { Context } from "../../../utils/context";
 
 import { RiAccountCircleLine, RiSettings3Line } from "react-icons/ri";
-import { BsBagHeart, BsEye } from "react-icons/bs";
+import { BsEye } from "react-icons/bs";
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 
 function EditProfile() {
@@ -152,7 +152,7 @@ function EditProfile() {
                     Settings
                   </a>
                 </li>
-                <li
+                {/* <li
                   className={selectedStore === "tab_2" ? "active" : ""}
                   onClick={handleStoreClick("tab_2")}
                 >
@@ -160,7 +160,7 @@ function EditProfile() {
                     <BsBagHeart />
                     My Orders
                   </a>
-                </li>
+                </li> */}
                 {/* <li
                   className={selectedStore === "tab_3" ? "active" : ""}
                   onClick={handleStoreClick("tab_3")}

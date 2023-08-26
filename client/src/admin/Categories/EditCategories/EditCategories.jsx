@@ -13,12 +13,14 @@ function EditCategories() {
     desc: "",
   });
 
+  console.log(categories);
+
   const token = JSON.parse(localStorage.getItem("user"));
   const jwt = token?.jwt;
 
   useEffect(() => {
     getDataAdmin
-      .get(`http://localhost:1337/api/categories/${id}`)
+      .get(`http://localhost:1337/api/categories/${id}?populate=*`)
       .then((response) => {
         setCategories(response.data);
       })
@@ -131,7 +133,17 @@ function EditCategories() {
                 id="file-input"
               />
               <div className="media-img">
-                {imageUrl && <img src={imageUrl} alt="Selected Image" />}
+                {imageUrl ? (
+                  <img src={imageUrl} alt="Selected Image" />
+                ) : (
+                  <img
+                    src={
+                      process.env.REACT_APP_STRIPE_APP_DEV_URL +
+                      categories?.data.attributes.img?.data?.attributes?.url
+                    }
+                    alt="Categories Image"
+                  />
+                )}
               </div>
 
               <button className="btn btn-success" type="submit">

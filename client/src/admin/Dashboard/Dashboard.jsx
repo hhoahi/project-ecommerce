@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getData } from "../../utils/api";
-import {
-  BsFillArchiveFill,
-  BsFillGrid3X3GapFill,
-  BsPeopleFill,
-  BsCurrencyDollar,
-} from "react-icons/bs";
+import { BsFillArchiveFill, BsFillGrid3X3GapFill } from "react-icons/bs";
+import { LuShoppingCart } from "react-icons/lu";
+import { FaMoneyBillWave } from "react-icons/fa";
 import { ResponsiveContainer } from "recharts";
 
 import CustomBarChart from "./Chart/CustomBarChart";
@@ -124,7 +121,7 @@ function Home() {
               <div>
                 <div className="card-inner">
                   <h3>ORDER</h3>
-                  <BsPeopleFill className="card_icon" />
+                  <LuShoppingCart className="card_icon" />
                 </div>
                 <h1>{orders.data?.length}</h1>
               </div>
@@ -138,7 +135,7 @@ function Home() {
               <div>
                 <div className="card-inner">
                   <h3>REVENUE</h3>
-                  <BsCurrencyDollar className="card_icon" />
+                  <FaMoneyBillWave className="card_icon" />
                 </div>
                 <h1>${calculateTotalRevenue()}</h1>
               </div>

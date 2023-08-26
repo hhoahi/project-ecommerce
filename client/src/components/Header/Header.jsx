@@ -20,7 +20,7 @@ const Header = () => {
   const [showCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-  const { cartCount, isOpen, setIsOpen, isLogin, setIsLogin } =
+  const { cartCount, isOpen, setIsOpen, isLogin, setIsLogin, setCartCount } =
     useContext(Context);
 
   const [scrolled, setScrolled] = useState(false);
@@ -68,7 +68,7 @@ const Header = () => {
     } else {
       return null;
     }
-  }, []);
+  }, [setIsLogin]);
 
   function handleLogin() {
     localStorage.setItem("userInfo", "true");
@@ -79,6 +79,7 @@ const Header = () => {
   function handleLogout() {
     localStorage.clear();
     navigate("/");
+    setCartCount(0);
     setIsLogin(false);
   }
 

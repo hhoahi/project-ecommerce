@@ -46,17 +46,27 @@ const SingleProduct = () => {
       <div className="layout">
         <div className="single-product-page">
           <div className="left">
-            {product.img && product.img.data && product.img.data[0] && (
-              <img
-                src={stripeAppDevUrl + product.img.data[0].attributes.url}
-                alt=""
-              />
-            )}
+            {product &&
+              product.img &&
+              product.img.data &&
+              product.img.data[0] && (
+                <img
+                  src={stripeAppDevUrl + product.img.data[0].attributes.url}
+                  alt=""
+                />
+              )}
           </div>
+
           <div className="right">
-            <span className="name">{product.title}</span>
-            <span className="price">&#x24;{product.price}</span>
-            <span className="desc">{product.desc}</span>
+            {product ? (
+              <>
+                <span className="name">{product?.title}</span>
+                <span className="price">&#x24;{product?.price}</span>
+                <span className="desc">{product?.desc}</span>
+              </>
+            ) : (
+              <span>Loading product...</span>
+            )}
 
             <div className="cart-buttons">
               <div className="quantity-buttons">
@@ -79,15 +89,24 @@ const SingleProduct = () => {
             <span className="divider" />
 
             <div className="info-item">
-              <span
-                className="text-bold"
-                onClick={() =>
-                  handleCategoryClick(product.categories.data[0].id)
-                }
-              >
+              <span className="text-bold">
                 Category:
-                <span> {product.categories.data[0].attributes.title}</span>
+                {product?.categories &&
+                product?.categories.data &&
+                product?.categories.data.length > 0 ? (
+                  <span
+                    onClick={() =>
+                      handleCategoryClick(product.categories.data[0].id)
+                    }
+                  >
+                    {" "}
+                    <span>{product.categories.data[0].attributes.title}</span>
+                  </span>
+                ) : (
+                  <span> No category available</span>
+                )}
               </span>
+
               <span className="text-bold">
                 Share:
                 <span className="social-icons">
@@ -103,7 +122,7 @@ const SingleProduct = () => {
         </div>
         <RelatedProducts
           productId={id}
-          categoryId={product.categories.data[0].id}
+          categoryId={product?.categories.data[0].id}
         />
       </div>
     </div>

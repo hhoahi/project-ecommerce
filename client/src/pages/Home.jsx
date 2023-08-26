@@ -1,42 +1,43 @@
-import { useEffect, useContext, useCallback } from "react";
+import { useEffect, useContext } from "react";
 import "../styles/Home.scss";
 
 import HeroSlider from "../components/UI/HeroSlider";
 import Category from "../components/Category/Categories/Categories";
 import Products from "../components/Products/Products";
 
-import { fetchDataFromApi } from "../utils/api";
 import { Context } from "../utils/context";
+import axios from "axios";
 
 const Home = () => {
   const { categories, setCategories, products, setProducts, setProductAdmin } =
     useContext(Context);
 
-  const getProducts = useCallback(() => {
-    fetchDataFromApi("/api/products?populate=*").then((res) => {
-      console.log(res);
-      setProducts(res);
-    });
-  }, [setProducts]);
+  const getProducts = async () => {
+    const response = await axios.get(
+      "http://localhost:1337/api/products?populate=*"
+    );
+    setProducts(response.data);
+  };
 
-  const getCategories = useCallback(() => {
-    fetchDataFromApi("/api/categories?populate=*").then((res) => {
-      console.log(res);
-      setCategories(res);
-    });
-  }, [setCategories]);
+  const getCategories = async () => {
+    const response = await axios.get(
+      "http://localhost:1337/api/categories?populate=*"
+    );
+    setCategories(response.data);
+  };
 
-  const getProductsAdmin = useCallback(() => {
-    fetchDataFromApi("/api/products?populate=*").then((res) => {
-      console.log(res);
-      setProductAdmin(res);
-    });
-  }, [setProductAdmin]);
+  const getProductsAdmin = async () => {
+    const response = await axios.get(
+      "http://localhost:1337/api/products?populate=*"
+    );
+    setProductAdmin(response.data);
+  };
 
   useEffect(() => {
     getProducts();
     getCategories();
-  }, [getProducts, getCategories, getProductsAdmin]);
+    getProductsAdmin();
+  }, []);
 
   return (
     <div className="background-layout">

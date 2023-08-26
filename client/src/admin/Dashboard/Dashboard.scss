@@ -34,25 +34,36 @@
   // }
 
   .card:first-child {
-    background-color: #2962ff;
+    background-color: #fc4b4e;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .card:nth-child(2) {
-    background-color: #ff6d00;
+    background-color: #ffc800;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .card:nth-child(3) {
-    background-color: #2e7d32;
+    background-color: #8884d8;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .card:nth-child(4) {
-    background-color: #d50000;
+    background-color: #4cc279;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .card-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    .card_icon {
+      font-size: 30px;
+    }
   }
 
   // .card-inner > .card_icon {

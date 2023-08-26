@@ -35,7 +35,7 @@ const Edit = () => {
 
   useEffect(() => {
     getDataAdmin
-      .get(`http://localhost:1337/api/products/${id}`)
+      .get(`http://localhost:1337/api/products/${id}?populate=*`)
       .then((response) => {
         setProduct(response.data);
       })
@@ -176,7 +176,17 @@ const Edit = () => {
                 id="file-input"
               />
               <div className="media-img">
-                {imageUrl && <img src={imageUrl} alt="Selected Image" />}
+                {imageUrl ? (
+                  <img src={imageUrl} alt="Selected Image" />
+                ) : (
+                  <img
+                    src={
+                      process.env.REACT_APP_STRIPE_APP_DEV_URL +
+                      product?.data.attributes.img?.data[0]?.attributes?.url
+                    }
+                    alt="Product Image"
+                  />
+                )}
               </div>
 
               <button className="btn btn-success" type="submit">

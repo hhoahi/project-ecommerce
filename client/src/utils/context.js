@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { createContext, useState } from "react";
 import { getToken } from "./helpers";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import Strapi from "strapi-sdk-js";
-import { getCurrentUser } from "./api";
 
 export const Context = createContext();
 const jwt = getToken();
@@ -17,7 +16,7 @@ const AppContext = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
   const [cartSubTotal, setCartSubTotal] = useState(0);
   const location = useLocation();
-  const navigate = useNavigate();
+ 
   const [productAdmin, setProductAdmin] = useState([]);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -60,7 +59,7 @@ const AppContext = ({ children }) => {
     calculateTotals();
   }, [cartItems]);
 
-  //thực hiện các thao tác thêm, xóa và thay đổi số lượng sản phẩm trong giỏ hàng
+  //thực hiện các thao tác thêm, xóa số lượng sản phẩm trong giỏ hàng
   const handleAddToCart = (product, quantity) => {
     let items = JSON.parse(localStorage.getItem("cartItems")) || [];
     let index = items.findIndex((p) => p.id === product.id);
@@ -82,21 +81,6 @@ const AppContext = ({ children }) => {
     localStorage.setItem("cartItems", JSON.stringify(updatedItems));
   };
 
-  const handleCartProductQuantity = (type, product) => {
-    const updatedItems = [...cartItems];
-    const index = updatedItems.findIndex((item) => item.id === product.id);
-    if (type === "inc") {
-      updatedItems[index].attributes.quantity += 1;
-    } else if (type === "dec") {
-      if (updatedItems[index].attributes.quantity === 1) return;
-      updatedItems[index].attributes.quantity -= 1;
-    }
-    setCartItems(updatedItems);
-    localStorage.setItem("cartItems", JSON.stringify(updatedItems));
-  };
-
-  //điều hướng khi navigate thay đổi, đoạn mã bên trong useEffect sẽ được thực thi
-
   return (
     //Context Provider thành phần chính để cung cấp Context cho toàn bộ ứng dụng.
     //Các giá trị và hàm được đặt trong Context.Provider để có thể truy cập từ bất kỳ thành phần con nào trong ứng dụng
@@ -114,7 +98,6 @@ const AppContext = ({ children }) => {
         setCartSubTotal,
         handleAddToCart,
         handleRemoveFromCart,
-        handleCartProductQuantity,
         userData,
         setUserData,
         isOpen,

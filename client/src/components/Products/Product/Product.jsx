@@ -10,13 +10,12 @@ const Product = ({ id, data }) => {
       {data.img.data && data.img.data.length > 0 && (
         <img src={stripeAppDevUrl + data.img.data[0].attributes.url} alt="" />
       )}
-      <div className="prod-detail">
-        <span className="name">
-          {data.title.slice(0, 30)}
-          {data.title.length > 30 ? "..." : ""}
-        </span>
-        <br />
-        <span className="price">&#x24;{data.price}</span>
+      <div className="product-detail">
+        <p className="name-product">
+          {data.title.slice(0, 50)}
+          {data.title.length > 50 ? "..." : ""}
+        </p>
+        <h4 className="price-product">&#x24;{data.price}</h4>
       </div>
     </div>
   );
